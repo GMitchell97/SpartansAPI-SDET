@@ -26,10 +26,6 @@ public class ConnectionManager {
         return streams;
     }
 
-    public static String getConnection() {
-        return BASEURL;
-    }
-
     public static String getBaseURL() {
         return BASEURL;
     }
