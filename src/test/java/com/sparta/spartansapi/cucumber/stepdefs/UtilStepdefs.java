@@ -1,8 +1,7 @@
 package com.sparta.spartansapi.cucumber.stepdefs;
 
 import com.sparta.spartansapi.connection.CallManager;
-import com.sparta.spartansapi.connection.ConnectionManager;
-import com.sparta.spartansapi.dto.SpartanDTO;
+import com.sparta.spartansapi.dto.IResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.jupiter.api.Assertions;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 public class UtilStepdefs {
 
     public static CallManager callManager;
-    public static SpartanDTO spartanDTO;
+    public static IResponse iResponse;
 
     @Then("I get an empty list")
     public void iGetAnEmptyList() {

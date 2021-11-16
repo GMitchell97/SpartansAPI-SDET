@@ -34,4 +34,8 @@ public class Spartan {
     public String getDeleteSpartanUrl(String id) {
         return endPointURL + "/" + id + "/delete";
     }
+
+    public String getByStream(String stream) {
+        return endPointURL + "?stream" + stream;
+    }
 }

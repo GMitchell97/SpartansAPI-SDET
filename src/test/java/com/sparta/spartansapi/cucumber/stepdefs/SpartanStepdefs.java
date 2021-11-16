@@ -6,10 +6,13 @@ import com.sparta.spartansapi.injector.Injector;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 
 import static com.sparta.spartansapi.cucumber.stepdefs.UtilStepdefs.*;
 
 public class SpartanStepdefs {
+
+
     @When("I make a valid request by course name {string}")
     public void iMakeAValidRequestByCourseName(String arg0) {
     }
@@ -106,8 +109,7 @@ public class SpartanStepdefs {
 
     @When("I make a valid request by last name {string}")
     public void iMakeAValidRequestByLastName(String lName) {
-        callManager = new CallManager(ConnectionManager.getSpartan().getByLastName(lName));
-        UtilStepdefs.spartanDTO = Injector.injectSpartanDTO(callManager);
+
     }
 
     @Then("I get back a Json array of Spartans that contain the last name {string}")
@@ -115,7 +117,9 @@ public class SpartanStepdefs {
     }
 
     @When("I make a valid request by stream name {string}")
-    public void iMakeAValidRequestByStreamName(String arg0) {
+    public void iMakeAValidRequestByStreamName(String streamName) {
+        callManager = new CallManager(ConnectionManager.getSpartan().getByStream(streamName));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("I get back a JSON response containing all Spartans with that String in their streamname")
@@ -124,5 +128,6 @@ public class SpartanStepdefs {
 
     @Then("I get back a JSON response containing all Spartans with that name")
     public void iGetBackAJSONResponseContainingAllSpartansWithThatName() {
+        Assertions.assertEquals(204, callManager.getStatusCode());
     }
 }
