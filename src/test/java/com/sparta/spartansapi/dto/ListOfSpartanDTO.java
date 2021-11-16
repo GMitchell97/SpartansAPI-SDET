@@ -12,4 +12,12 @@ public class ListOfSpartanDTO implements IResponse {
         spartans.add(spartanDTO);
     }
 
+    public boolean isSpartanInStream(String stream){
+        for (SpartanDTO spartanDTO: spartans){
+            if (!spartanDTO.getStream().equals(stream)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

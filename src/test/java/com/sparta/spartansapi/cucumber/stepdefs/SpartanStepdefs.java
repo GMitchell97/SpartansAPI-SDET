@@ -2,6 +2,8 @@ package com.sparta.spartansapi.cucumber.stepdefs;
 
 import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.connection.ConnectionManager;
+import com.sparta.spartansapi.dto.ErrorDTO;
+import com.sparta.spartansapi.dto.ListOfSpartanDTO;
 import com.sparta.spartansapi.injector.Injector;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -122,6 +124,7 @@ public class SpartanStepdefs {
 
     @Then("I get back a JSON response containing all Spartans with that String in their streamname")
     public void iGetBackAJSONResponseContainingAllSpartansWithThatStringInTheirStreamname() {
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInStream("Java"));
     }
 
     @Then("I get back a JSON response containing all Spartans with that name")
