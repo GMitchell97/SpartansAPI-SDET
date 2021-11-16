@@ -247,7 +247,7 @@ public class SpartanDTO {
      * @return whether or not the date is equal to or after 2014
      */
     private boolean isDateEqualOrAfterFoundingYear(LocalDate date) {
-        LocalDate founded = LocalDate.parse("2014");
+        LocalDate founded = LocalDate.parse("2014-01-01");
         return date.isEqual(founded) || date.isAfter(founded);
     }
 }
