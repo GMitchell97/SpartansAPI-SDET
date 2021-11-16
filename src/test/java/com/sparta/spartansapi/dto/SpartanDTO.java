@@ -1,14 +1,18 @@
 package com.sparta.spartansapi.dto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.mockito.cglib.core.Local;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Locale;
 
-public class SpartanDTO {
+public class SpartanDTO implements IResponse{
 
     private String id;
     private String firstName;
@@ -249,5 +253,15 @@ public class SpartanDTO {
     private boolean isDateEqualOrAfterFoundingYear(LocalDate date) {
         LocalDate founded = LocalDate.parse("2014");
         return date.isEqual(founded) || date.isAfter(founded);
+    }
+
+    public static boolean isJSONValid(String jsonString ) {
+        try {
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.readTree(jsonString);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
