@@ -3,39 +3,45 @@ package com.sparta.spartansapi.connection;
 public class Spartan {
     private static String endPointURL = ConnectionManager.getBaseURL() + "/spartan";
     
-    private static String getAll() {
+    public String getAll() {
         return endPointURL+"/all";
     }
 
-    public String getByFirstName(String firstName) {
-        return endPointURL+"?firstName="+firstName;
+    public String getByName(String firstName) {
+        return endPointURL+"/name?firstName=" + firstName;
     }
 
-    public String getByLastName(String lastName){
-        return endPointURL+"?lastName="+lastName;
+    public String getByName(String fName, String lName) {
+        return endPointURL+"/name?firstName=" + fName
+                + "&lastname=" + lName;
     }
 
     public String getByStartDate(String startDate) {
-        return endPointURL + "?startDate" + startDate;
+        return endPointURL + "/start?startdate=" + startDate;
+    }
+
+    public String getByStartDateInRange(String lower, String upper) {
+        return endPointURL + "/range?startdatelower=" + lower
+                + "&startdateupper=" + lower;
     }
 
     public String getByCourse(String course) {
-        return endPointURL + "?course" + course;
+        return endPointURL + "/course?name=" + course;
     }
 
     public String getAddSpartanUrl() {
         return endPointURL + "/add";
     }
 
-    public String getUpdateSpartanUrl(String id){
-        return endPointURL+"/"+id+"/update";
+    public String getUpdateSpartanUrl(String id) {
+        return endPointURL+"/update/" + id;
     }
 
     public String getDeleteSpartanUrl(String id) {
-        return endPointURL + "/" + id + "/delete";
+        return endPointURL + "/delete/" + id;
     }
 
     public String getByStream(String stream) {
-        return endPointURL + "?stream" + stream;
+        return endPointURL + "/stream?name=" + stream;
     }
 }
