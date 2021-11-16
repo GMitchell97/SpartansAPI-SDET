@@ -2,7 +2,7 @@ Feature: View all spartans
   @Happy
   Scenario: Querying a Response code with view all spartans
     When I make a GET request to "all"
-    Then I should get back a 200 code
+    Then I get back a 200 response code
 
 Feature: View all spartans
   @Happy
@@ -13,9 +13,9 @@ Feature: View all spartans
   @Sad
   Scenario: Querying a Response code with an invalid request to view all spartans
     When I make a GET request to "al"
-    Then I should get back a 400 code
+    Then I get back a 400 response code
 
   @Sad
   Scenario: I make an invalid request to view all spartans, receive an error message
     When I make a GET request to "al"
-    Then I should get back an error message
+    Then I get back an error message
