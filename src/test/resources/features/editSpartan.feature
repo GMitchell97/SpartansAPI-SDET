@@ -12,5 +12,5 @@ Feature: Update a spartan by Id
   Scenario: As a user I want an error to occur if I try edit a wrong spartan
     Given I use a valid API key
     When I make a POST request to /spartan?id={spartanId} with an non-existing Id
-    Then I should get a 404 code
-    And I should get a message that {spartan id} is invalid or not found
+    Then I should get back a 404 code
+    And I should get back a message that {spartan id} is invalid or not found
