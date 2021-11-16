@@ -10,26 +10,17 @@ import java.util.HashMap;
 public class ConnectionManager {
 
     private static final String BASEURL = "/api";
-    private Spartan spartan;
-    private Courses courses;
-    private Streams streams;
 
-    ConnectionManager() {
-        spartan = new Spartan();
-        courses = new Courses();
-        streams = new Streams();
+    public static Spartan getSpartan() {
+        return new Spartan();
     }
 
-    public Spartan getSpartan() {
-        return spartan;
+    public static Courses getCourses() {
+        return new Courses();
     }
 
-    public Courses getCourses() {
-        return courses;
-    }
-
-    public Streams getStreams() {
-        return streams;
+    public static Streams getStreams() {
+        return new Streams();
     }
 
     public static String getBaseURL() {
