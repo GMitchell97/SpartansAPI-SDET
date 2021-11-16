@@ -24,4 +24,4 @@ Feature: Update a spartan by Id
   @Sad
   Scenario:  If there isn't an id in the system I want to get back a 404 response code
     When I make a valid POST request to a non-existing Id
-    Then I should get back a error message
+    Then I should get back an error message
