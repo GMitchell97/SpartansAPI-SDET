@@ -8,18 +8,12 @@ public class Courses {
     }
 
     public String getSpecificCourseUrl(String course){
-        return endPointURL + "course?name="+course;
+        return endPointURL + "/course?name="+course;
     }
 
-    public String getCourseUpdateUrl(String courseId) { return endPointURL + "/update/"+ courseId;}
+    public String getCourseUpdateUrl(String courseId) { return endPointURL + "/update/"+ courseId; }
 
-    public String getCourseDeleteUrl(String courseId){
-        return endPointURL + "/delete/"+ courseId ;
-    }
+    public String getCourseDeleteUrl(String courseId){ return endPointURL + "/delete/"+ courseId ; }
 
-    public String getAddCourseUrl(){
-        return endPointURL +"/add";
-    }
-
-
+    public String getAddCourseUrl(){ return endPointURL +"/add"; }
 }
