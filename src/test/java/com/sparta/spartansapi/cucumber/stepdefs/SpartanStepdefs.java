@@ -21,8 +21,6 @@ public class SpartanStepdefs {
     public void iGetBackAListOfSpartansThatContainTheCourseName(String arg0) {
     }
 
-
-
     @When("I search for Spartans who end their contract on a specified full date")
     public void iSearchForSpartansWhoEndTheirContractOnASpecifiedFullDate() {
     }
