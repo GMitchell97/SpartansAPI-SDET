@@ -15,7 +15,7 @@ public class Injector {
     public static SpartanDTO injectSpartanDTO(CallManager callManager) {
         SpartanDTO spartanDTO =  new SpartanDTO();
         try {
-            spartanDTO = objectMapper.readValue(callManager.getJSON(), SpartanDTO.class);
+            spartanDTO = objectMapper.readValue(callManager.getJson(), SpartanDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

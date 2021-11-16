@@ -10,9 +10,15 @@ import java.util.HashMap;
 public class ConnectionManager {
 
     private static final String BASEURL = "/api";
-    private Spartan spartan = new Spartan();
-    private Courses courses = new Courses();
-    private Streams streams = new Streams();
+    private Spartan spartan;
+    private Courses courses;
+    private Streams streams;
+
+    ConnectionManager() {
+        spartan = new Spartan();
+        courses = new Courses();
+        streams = new Streams();
+    }
 
     public Spartan getSpartan() {
         return spartan;
