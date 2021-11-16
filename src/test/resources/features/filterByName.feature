@@ -6,7 +6,7 @@ Feature:  Filter Spartan By Spartan Name
 
   Scenario: Search request with a non-existing name body checker
     When I make a valid request by a non-existing name
-    Then I get an empty array list
+    Then I get an empty list
 
   Scenario: Search request with an empty name
     When I make valid request by an empty name
@@ -14,7 +14,7 @@ Feature:  Filter Spartan By Spartan Name
 
   Scenario: Search request with an empty name body checker
     When I make valid request by an empty name
-    Then I get an empty array list
+    Then I get an empty list
 
   Scenario: Search request with full name un-capitalised returns correct json
     When I make a valid request by full name "daniel david white"
