@@ -17,5 +17,5 @@ Feature: View all spartans
 
   @Sad
   Scenario: I make an invalid request to view all spartans, receive an error message
-    When I make a GET request to "all"
-    Then I should get back a message that {spartanId} does not exist
+    When I make a GET request to "al"
+    Then I should get back an error message
