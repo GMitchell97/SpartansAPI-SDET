@@ -207,7 +207,7 @@ public class SpartanDTO {
      * @param dateStr - the date (as a String)
      * @return whether or not the date is valid
      */
-    public boolean isValidDate(String dateStr) {
+    public boolean isValidDateStringFormat(String dateStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
                 .withResolverStyle(ResolverStyle.STRICT);
         try {
@@ -216,5 +216,38 @@ public class SpartanDTO {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Checks if the start date is valid
+     * @return whether or not the start date is valid
+     */
+    public boolean isValidStartDate() {
+        // TODO: review whether startDate and endDate can be the same
+        return isDateEqualOrAfterFoundingYear(startDate) &&
+                (startDate.isEqual(endDate) || startDate.isBefore(endDate));
+    }
+
+    /**
+     * Checks if the end date is valid
+     * @return whethernor not the end date is valid
+     */
+    public boolean isValidEndDate() {
+        if (endDate == null) {
+            return true;
+        }
+        // TODO: review whether startDate and endDate can be the same
+        return isDateEqualOrAfterFoundingYear(endDate) &&
+                (endDate.isEqual(startDate) || endDate.isAfter(startDate));
+    }
+
+    /**
+     * Checks if the date is equal to or after Sparta's founding year (2014)
+     * @param date - the date to be checked
+     * @return whether or not the date is equal to or after 2014
+     */
+    private boolean isDateEqualOrAfterFoundingYear(LocalDate date) {
+        LocalDate founded = LocalDate.parse("2014");
+        return date.isEqual(founded) || date.isAfter(founded);
     }
 }
