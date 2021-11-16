@@ -13,7 +13,7 @@ public class Injector {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static SpartanDTO injectSpartanDTO(CallManager callManager) {
-        SpartanDTO spartanDTO =  new SpartanDTO(); // needs the input parameters set or a blank constructor
+        SpartanDTO spartanDTO =  new SpartanDTO();
         try {
             spartanDTO = objectMapper.readValue(callManager.getJson(), SpartanDTO.class);
         } catch (IOException e) {
