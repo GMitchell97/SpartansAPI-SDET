@@ -1,17 +1,25 @@
 Feature: Filter Spartan by stream name
 
-  Scenario: Querying a Spartan with a valid stream name
-    When I have made a valid request to valid Stream name
-    Then I should get back a JSON response containing all Spartans with that String in their streamname
+  Scenario: Querying a Spartan with a non-Capitalised stream name
+    When I make a valid request by stream name "java"
+    Then I get back a JSON response containing all Spartans with that String in their streamname
 
-  Scenario: Querying a Spartan with a Capitalized stream name
-    When I have made a request to a valid Stream with an existing capitalized streamname
-    Then I should get back a JSON response containing all Spartans with that name
+  Scenario: Querying a Spartan with a capitalised stream name
+    When I make a valid request by stream name "JAVA"
+    Then I get back a JSON response containing all Spartans with that name
 
-  Scenario: Querying a Spartan with a non-Capitalized stream name
-    When I have made a request to a valid Stream with an existing non-capitalized streamname
-    Then I should get back a JSON response containing all Spartans with that name
+  Scenario: Querying a response code with a non-Capitalised stream name
+    When I make a valid request by stream name "java"
+    Then I get back a 200 response code
 
-    Scenario: Querying a Spartan with an invalid stream name
-      When I have made invalid a request to Stream
-      Then I should get back a JSON response return an 204 statuscode with and empty array
+  Scenario: Querying a response code with a capitalised stream name
+    When I make a valid request by stream name "JAVA"
+    Then I get back a 200 response code
+
+  Scenario: Querying a Response code with an invalid stream name
+    When I make a valid request by stream name "Ruby"
+    Then I get back a 204 response code
+
+  Scenario: Querying a Spartan with an invalid stream name
+    When I make a valid request by stream name "Ruby"
+    Then I get an empty list
