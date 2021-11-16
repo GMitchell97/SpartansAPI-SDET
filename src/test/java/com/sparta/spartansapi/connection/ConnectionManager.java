@@ -29,5 +29,4 @@ public class ConnectionManager {
     public static String getBaseURL() {
         return BASEURL;
     }
-
 }

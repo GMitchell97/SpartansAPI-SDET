@@ -74,4 +74,40 @@ public class SpartanDTO {
     public String getEmail() {
         return email;
     }
+
+    public String getFullName() {
+        return firstName + " " + middleName + " " + lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setStartDate(DateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(DateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public void setStream(String stream) {
+        this.stream = stream;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
