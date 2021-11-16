@@ -4,24 +4,27 @@ Feature: Filter by end date
     Given I use a valid API key
 
   @Happy
-  Scenario: Search for Spartans who end their contract on specific date
+  Scenario: Querying Spartans who end their contract on specific date
     When I search for Spartans who end their contract on a specified full date
     Then I get a list of Spartans who end their contract on the specified full date
 
-  Scenario: Search for Spartans who end their contract on specific date
+  @Happy
+  Scenario: Querying a response code for spartans who end their contract on specific date
     When I search for Spartans who end their contract on a specified full date
     Then I get back a 200 response code
 
-  Scenario: Search for Spartans who end their contract within a specific date range
+  @Happy
+  Scenario: Querying Spartans who end their contract within a specific date range
     When I search for Spartans who end their contract who end their contract within a specified date range
     Then I get a list of Spartans who end their contract within the specified date range
 
-  Scenario: Search for Spartans who end their contract within a specific date range
+  @Happy
+  Scenario: Querying a response code for Spartans who end their contract within a specific date range
     When I search for Spartans who end their contract who end their contract within a specified date range
     Then I get back a 200 response code
 
   @Sad
-  Scenario: Search for Spartans who end their contract using an invalid date
+  Scenario: Querying a response code for Spartans who end their contract using an invalid date
     When I search for Spartans who end their contract on an invalid full date
     Then I get back a 400 response code
 
