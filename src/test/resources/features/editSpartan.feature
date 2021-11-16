@@ -5,8 +5,8 @@ Feature: Update a spartan by Id
     Given I use a valid API key
     When I make a POST request to /spartan?id={spartanId} with an existing Id
     Then the field should be updated
-    And I should get a 200 code
-    And I should get a message that {spartanId} has been updated
+    And I should get back a 200 code
+    And I should get back a message that {spartanId} has been updated
 
   @Sad
   Scenario: As a user I want an error to occur if I try edit a wrong spartan
