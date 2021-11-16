@@ -1,8 +1,13 @@
 package com.sparta.spartansapi.cucumber.stepdefs;
 
+import com.sparta.spartansapi.connection.CallManager;
+import com.sparta.spartansapi.connection.ConnectionManager;
+import com.sparta.spartansapi.injector.Injector;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import static com.sparta.spartansapi.cucumber.stepdefs.UtilStepdefs.*;
 
 public class SpartanStepdefs {
     @When("I make a valid request by course name {string}")
@@ -100,7 +105,9 @@ public class SpartanStepdefs {
     }
 
     @When("I make a valid request by last name {string}")
-    public void iMakeAValidRequestByLastName(String arg0) {
+    public void iMakeAValidRequestByLastName(String lName) {
+        callManager = new CallManager(ConnectionManager.getSpartan().getByLastName(lName));
+        UtilStepdefs.spartanDTO = Injector.injectSpartanDTO(callManager);
     }
 
     @Then("I get back a Json array of Spartans that contain the last name {string}")
