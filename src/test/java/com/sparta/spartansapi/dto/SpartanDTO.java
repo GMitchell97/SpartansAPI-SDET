@@ -241,7 +241,6 @@ public class SpartanDTO {
                 (endDate.isEqual(startDate) || endDate.isAfter(startDate));
     }
 
-
     /**
      * Checks if the date is equal to or after Sparta's founding year (2014)
      * @param date - the date to be checked
