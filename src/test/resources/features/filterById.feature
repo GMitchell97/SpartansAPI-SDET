@@ -9,7 +9,7 @@ Feature: Filtering By Id
     Scenario: If there is an id in the system I want to get back the Spartan with the correct ID
     When I make a valid request by id "validid"
     And That id is in the database
-    Then I should get back the Spartan with the correct id
+    Then I get back a  Spartan that contain the id "validid"
 
 
   @SadResponse
