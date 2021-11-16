@@ -1,13 +1,16 @@
 Feature: Update a spartan by Id
 
   @Happy
-  Scenario: Editing a spartan that exists
-      Given I have made a request to /spartan?id={spartanId} with an existin
-      Then I should get a 200 code
-      And I should get a message that Id has been updated
+  Scenario: As a use I want to edit a spartan that exists
+    Given I use a valid API key
+    When I make a POST request to /spartan?id={spartanId} with an existing Id
+    Then the field should be updated
+    And I should get a 200 code
+    And I should get a message that {spartanId} has been updated
 
   @Sad
-  Scenario: Trying to edit a spartan that doesn't exist
-    Given I have made a request to /spartan?id={spartanId} with an non-existing Id
+  Scenario: As a user I want an error to occur if I try edit a wrong spartan
+    Given I use a valid API key
+    When I make a POST request to /spartan?id={spartanId} with an non-existing Id
     Then I should get a 404 code
-    And I should get a message that spartan id is invalid or not found
+    And I should get a message that {spartan id} is invalid or not found
