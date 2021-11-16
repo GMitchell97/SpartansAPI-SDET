@@ -39,6 +39,9 @@ public class SpartanDTO {
         this.email = email;
     }
 
+    public SpartanDTO() {
+    }
+
     public String getId() {
         return id;
     }
