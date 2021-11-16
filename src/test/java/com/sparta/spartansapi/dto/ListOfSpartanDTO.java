@@ -11,4 +11,5 @@ public class ListOfSpartanDTO implements IResponse {
     public void addSpartan(SpartanDTO spartanDTO){
         spartans.add(spartanDTO);
     }
+
 }
