@@ -8,47 +8,43 @@ Feature: Filter Spartan by stream name
 
     Examples:
     | stream |
-    | Java Dev |
-    | C# Dev   |
-    | Java SDET |
+    | Java%20Dev |
+    | C#%20Dev   |
+    | Java%20SDET |
 
   @Happy @Status
   Scenario Outline: Querying a Response code with a first-letter capitalised stream name
     When I make a valid request by stream name "<stream>"
-    Then I get back a 200 response code
+    Then I get back a <response> response code
+
+    Examples:
+      | stream | response |
+      | Java%20Dev | 200    |
+      | C#%20Dev   | 200    |
+      | Java%20SDET | 200   |
+      | java      | 204   |
+      | JAVA      | 204   |
+      | Ruby      | 204   |
+
+  @Sad @Error
+  Scenario Outline: Querying a Spartan with an invalid stream name
+    When I make a valid request by stream name "<stream>"
+    Then I get back an error message
 
     Examples:
       | stream |
-      | Java Dev |
-      | C# Dev   |
-      | Java SDET |
+      | afad1324 |
+      | 345678;  |
+      | asd dsa  |
 
-  @Happy @Status
-  Scenario: Querying a response code with a non-Capitalised stream name
-    When I make a valid request by stream name "java"
-    Then I get back a 204 response code
+  @Sad @Status
+  Scenario Outline: Querying a Response with an invalid stream name
+    When I make a valid request by stream name "<stream>"
+    Then I get back a <response> response code
 
-  @Sad @Error
-  Scenario: Querying a Spartan with an invalid stream name
-    When I make a valid request by stream name "java"
-    Then I get back an error message
-
-  @Happy @Status
-  Scenario: Querying a Response code with a capitalised stream name
-    When I make a valid request by stream name "JAVA"
-    Then I get back a 204 response code
-
-  @Happy @Error
-  Scenario: Querying a Spartan with an capitalised stream name
-    When I make a valid request by stream name "JAVA"
-    Then I get back an error message
-
-  @Happy @Status
-  Scenario: Querying a Response code with an invalid stream name
-    When I make a valid request by stream name "Ruby"
-    Then I get back a 204 response code
-
-  @Sad @Error
-  Scenario: Querying a Spartan with an invalid stream name
-    When I make a valid request by stream name "Ruby"
-    Then I get back an error message
+    Examples:
+      | stream | response |
+      | afad1324 | 500    |
+      | 345678;  | 500    |
+      | asd dsa  | 500    |
+      | hi... | 500 |

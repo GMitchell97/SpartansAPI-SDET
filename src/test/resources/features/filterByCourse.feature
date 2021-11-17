@@ -8,9 +8,9 @@ Feature: Filter Spartan by course name
 
     Examples:
       | course |
-      | Engineering 95 |
-      | Business 67   |
-      | Engineering 96 |
+      | Engineering%2095 |
+      | Business%2067   |
+      | Engineering%2096 |
 
   @Happy @Status
   Scenario Outline: Querying a Response code with course name
@@ -19,12 +19,12 @@ Feature: Filter Spartan by course name
 
     Examples:
       | course | response |
-      | Engineering 95 | 200 |
-      | Business 67   | 200  |
-      | Engineering 96 | 200 |
-      | ENGINEERING 95 | 204 |
-      | engineering 96 | 204 |
-      | BUSINESS 67 | 204    |
+      | Engineering%2095 | 200 |
+      | Business%2067   | 200  |
+      | Engineering%2096 | 200 |
+      | ENGINEERING%2095 | 204 |
+      | engineering%2096 | 204 |
+      | BUSINESS%2067 | 204    |
       | engineering | 204    |
       | Maths       | 204    |
 
@@ -35,9 +35,9 @@ Feature: Filter Spartan by course name
 
     Examples:
       | course |
-      | ENGINEERING 95 |
-      | engineering 96 |
-      | BUSINESS 67 |
+      | ENGINEERING%2095 |
+      | engineering%2096 |
+      | BUSINESS%2067 |
       | engineering |
       | asdfghjkl  |
       | Maths      |
@@ -56,11 +56,12 @@ Feature: Filter Spartan by course name
   @Sad @Status
   Scenario Outline: Querying a response with an invalid course name
     When I make a valid request by course name "<course>"
-    Then I get back an error message
+    Then I get back a <response> response code
 
     Examples:
-      | course |
-      | afad1324 |
-      | 345678;  |
-      | asd dsa  |
+      | course | response |
+      | afad1324 | 500    |
+      | 345678;  | 500    |
+      | asd dsa  | 500    |
+      | hi... | 500 |
 
