@@ -1,5 +1,6 @@
 package com.sparta.spartansapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,14 +15,23 @@ import java.util.Locale;
 
 public class SpartanDTO implements IResponse{
 
+    @JsonProperty("id")
     private String id;
+    @JsonProperty("firstName")
     private String firstName;
+    @JsonProperty("middleName")
     private String middleName;
+    @JsonProperty("lastName")
     private String lastName;
+    @JsonProperty("startDate")
     private LocalDate startDate;
+    @JsonProperty("endDate")
     private LocalDate endDate;
+    @JsonProperty("course")
     private String course;
+    @JsonProperty("stream")
     private String stream;
+    @JsonProperty("email")
     private String email;
 
 
