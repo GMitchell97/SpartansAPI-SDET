@@ -116,14 +116,14 @@ public class SpartanStepdefs {
 
 
     @When("I make a valid request by stream name {string}")
-    public void iMakeAValidRequestByStreamName(String streamName) throws IOException, InterruptedException {
-        callManager = new CallManager(ConnectionManager.getSpartans().getByStream(streamName));
+    public void iMakeAValidRequestByStreamName(String stream) throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByStream(stream));
         iResponse = Injector.injectDTO(callManager);
     }
 
-    @Then("I get back a JSON response containing all Spartans with that String in their streamname")
-    public void iGetBackAJSONResponseContainingAllSpartansWithThatStringInTheirStreamname() {
-        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInStream("Java"));
+    @Then("I get back a JSON response containing all Spartans with that String in their stream name {string}")
+    public void iGetBackAJSONResponseContainingAllSpartansWithThatStringInTheirStreamName(String stream) {
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInStream(stream));
     }
 
     @Then("I get back a JSON response containing all Spartans with that name")

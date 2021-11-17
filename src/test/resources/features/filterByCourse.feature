@@ -56,11 +56,12 @@ Feature: Filter Spartan by course name
   @Sad @Status
   Scenario Outline: Querying a response with an invalid course name
     When I make a valid request by course name "<course>"
-    Then I get back an error message
+    Then I get back a <response> response code
 
     Examples:
-      | course |
-      | afad1324 |
-      | 345678;  |
-      | asd dsa  |
+      | course | response |
+      | afad1324 | 500    |
+      | 345678;  | 500    |
+      | asd dsa  | 500    |
+      | hi... | 500 |
 
