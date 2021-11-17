@@ -53,14 +53,17 @@ public class SpartanStepdefs {
 
     @When("I make a valid request by id {string}")
     public void iMakeAValidRequestById(String arg0) {
+        callManager = new CallManager(ConnectionManager.getSpartans().getById(arg0));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @And("That id is in the database")
     public void thatIdIsInTheDatabase() {
     }
 
-    @Then("I get back a  Spartan that contain the id {string}")
+    @Then("I get back a Spartan that contain the id {string}")
     public void iGetBackASpartanThatContainTheId(String arg0) {
+
     }
 
     @And("that id isnt in the database")
@@ -139,4 +142,6 @@ public class SpartanStepdefs {
     @When("I make a valid request by last name {string}")
     public void iMakeAValidRequestByLastName(String arg0) {
     }
+
+
 }

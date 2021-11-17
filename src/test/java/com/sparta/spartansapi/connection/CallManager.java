@@ -2,7 +2,7 @@ package com.sparta.spartansapi.connection;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONObject;
+
 
 import java.net.http.*;
 import java.net.URI;
