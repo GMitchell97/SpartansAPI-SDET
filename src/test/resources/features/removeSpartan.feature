@@ -1,4 +1,4 @@
-@mvp
+@SmokeTests @WIP @Remove
 Feature: Remove a Spartan by Id
 
   @Happy
