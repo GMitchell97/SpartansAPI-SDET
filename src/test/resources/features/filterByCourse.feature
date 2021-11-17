@@ -36,5 +36,7 @@ Feature: Filter Spartan by course name
     When I make a valid request by course name "Maths"
     Then I get back an error message
 
+  @Happy @Error
+  Scenario: Querying a response code with an invalid course name
     When I make a valid request by course name "Maths"
     Then I get back a 204 response code
