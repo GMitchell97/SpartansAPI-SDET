@@ -4,13 +4,13 @@ Feature: Filter Spartan by stream name
   @Happy @View
   Scenario Outline: Querying a Spartan with a first-letter capitalised stream name
     When I make a valid request by stream name "<stream>"
-    Then I get back a JSON response containing all Spartans with that String in their stream name "<stream>"
+    Then I get back a JSON response containing all Spartans with that String in their stream name "<stream1>"
 
     Examples:
-    | stream |
-    | Java%20Dev |
-    | C#%20Dev   |
-    | Java%20SDET |
+    | stream | stream1 |
+    | Java%20Dev | Java Dev|
+    | C#%20Dev   | C# Dev  |
+    | Java%20SDET | Java SDET|
 
   @Happy @Status
   Scenario Outline: Querying a Response code with a first-letter capitalised stream name
@@ -29,11 +29,10 @@ Feature: Filter Spartan by stream name
   @Sad @Error
   Scenario Outline: Querying a Spartan with an invalid stream name
     When I make a valid request by stream name "<stream>"
-    Then I get back an error message ""
+    Then I get back an error message "Field format invalid"
 
     Examples:
       | stream |
-      | afad1324 |
       | 345678;  |
       | asd dsa  |
 
@@ -44,7 +43,5 @@ Feature: Filter Spartan by stream name
 
     Examples:
       | stream | response |
-      | afad1324 | 500    |
-      | 345678;  | 500    |
-      | asd dsa  | 500    |
-      | hi... | 500 |
+      | 345678;  | 400    |
+      | asd dsa  | 400    |

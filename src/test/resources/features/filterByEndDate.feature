@@ -30,6 +30,6 @@ Feature: Filter by end date
     Then I get back a 400 response code
 
   @Sad @Error
-  Scenario: Search for Spartans who end their contract using an invalid date
+  Scenario: Search for Spartans who end their contract using an invalid date format
     When I search for Spartans who end their contract on an invalid full date
-    Then I get back an error message ""
+    Then I get back an error message "Field format invalid"
