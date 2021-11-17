@@ -32,4 +32,4 @@ Feature: Filter by end date
   @Sad @Error
   Scenario: Search for Spartans who end their contract using an invalid date
     When I search for Spartans who end their contract on an invalid full date
-    Then I get back an error message
+    Then I get back an error message ""

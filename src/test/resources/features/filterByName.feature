@@ -9,7 +9,7 @@ Feature:  Filter Spartan By Spartan Name
   @Happy @Error
   Scenario: Search request with a non-existing name body checker
     When I make a valid request by a non-existing name
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Happy @Status
   Scenario: Search request with an empty name
@@ -19,7 +19,7 @@ Feature:  Filter Spartan By Spartan Name
   @Happy @Error
   Scenario: Search request with an empty name body checker
     When I make valid request by an empty name
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Happy @View
   Scenario: Search request with full name un-capitalised returns correct json
@@ -29,12 +29,12 @@ Feature:  Filter Spartan By Spartan Name
   @Sad @Error
   Scenario: Search request with full name un-capitalised returns correct json
     When I make a valid request by full name "daniel david white"
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Sad @Error
   Scenario: Search request with full name capitalised returns correct json
     When I make a valid request by full name "DANIEL DAVID WHITE"
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Happy @View
   Scenario: Search request with first name un-capitalised returns correct json
@@ -44,12 +44,12 @@ Feature:  Filter Spartan By Spartan Name
   @Sad @Error
   Scenario: Search request with first name un-capitalised returns correct json
     When I make a valid request by first name "daniel"
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Sad @Error
   Scenario: Search request with first name capitalised returns correct json
     When I make a valid request by first name "DANIEL"
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Happy @View
   Scenario: Search request with first and last name un-capitalised returns correct json
@@ -59,12 +59,12 @@ Feature:  Filter Spartan By Spartan Name
   @Sad @Error
   Scenario: Search request with first and last name un-capitalised returns correct json
     When I make a valid request by first and last name "daniel white"
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Sad @Error
   Scenario: Search request with first and last name un-capitalised returns correct json
     When I make a valid request by first and last name "DANIEL WHITE"
-    Then I get back an error message
+    Then I get back an error message ""
 
 
   @FullName @Happy @Status
