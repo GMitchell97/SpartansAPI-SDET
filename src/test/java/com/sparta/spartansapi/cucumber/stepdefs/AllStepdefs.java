@@ -8,6 +8,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
+import java.net.ConnectException;
+
 import static com.sparta.spartansapi.cucumber.stepdefs.UtilStepdefs.callManager;
 import static com.sparta.spartansapi.cucumber.stepdefs.UtilStepdefs.iResponse;
 
@@ -22,5 +24,15 @@ public class AllStepdefs {
     @Then("receive a list of all spartans in a json format")
     public void receiveAListOfAllSpartansInAJsonFormat() {
         Assertions.assertTrue(SpartanDTO.isJSONValid(callManager.getJson()));
+    }
+
+    @When("I make a GET request to all")
+    public void iMakeAGETRequestToAll() {
+        callManager = new CallManager(ConnectionManager.getSpartan().getAll());
+    }
+
+    @When("I make a GET request to al")
+    public void iMakeAGETRequestToAl() {
+        callManager = new CallManager(ConnectionManager.getBaseURL() + "/spartan/al");
     }
 }
