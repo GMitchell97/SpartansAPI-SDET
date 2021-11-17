@@ -6,20 +6,10 @@ Feature:  Filter Spartan By Spartan Name
     When I make a valid request by a non-existing name
     Then I get back a 204 response code
 
-  @Happy @Empty
-  Scenario: Search request with a non-existing name body checker
-    When I make a valid request by a non-existing name
-    Then I get an empty list
-
   @Happy @Status
   Scenario: Search request with an empty name
     When I make valid request by an empty name
     Then I get back a 204 response code
-
-  @Happy @Empty
-  Scenario: Search request with an empty name body checker
-    When I make valid request by an empty name
-    Then I get an empty list
 
   @Happy @View
   Scenario: Search request with full name un-capitalised returns correct json
