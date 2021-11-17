@@ -57,21 +57,9 @@ public class SpartanStepdefs {
         iResponse = Injector.injectDTO(callManager);
     }
 
-    @And("That id is in the database")
-    public void thatIdIsInTheDatabase() {
-    }
-
     @Then("I get back a Spartan that contain the id {string}")
     public void iGetBackASpartanThatContainTheId(String arg0) {
         Assertions.assertEquals(arg0,((SpartanDTO) iResponse).getId());
-    }
-
-    @And("that id isnt in the database")
-    public void thatIdIsntInTheDatabase() {
-    }
-
-    @Then("I Should get back an empty json array")
-    public void iShouldGetBackAnEmptyJsonArray() {
     }
 
     @When("I make a valid request by year and month {string}")
@@ -137,10 +125,6 @@ public class SpartanStepdefs {
 
     @Then("I get back a Json array of Spartans that contain the first and last name {string}")
     public void iGetBackAJsonArrayOfSpartansThatContainTheFirstAndLastName(String arg0) {
-    }
-
-    @When("I make a valid request by last name {string}")
-    public void iMakeAValidRequestByLastName(String arg0) {
     }
 
 

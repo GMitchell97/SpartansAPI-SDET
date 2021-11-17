@@ -9,7 +9,7 @@ Feature:  Filter Spartan By Spartan Name
   @Happy @Error
   Scenario: Search request with a non-existing name body checker
     When I make a valid request by a non-existing name
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
   @Happy @Status
   Scenario: Search request with an empty name
@@ -19,53 +19,53 @@ Feature:  Filter Spartan By Spartan Name
   @Happy @Error
   Scenario: Search request with an empty name body checker
     When I make valid request by an empty name
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
   @Happy @View
-  Scenario: Search request with full name un-capitalised returns correct json
-    When I make a valid request by full name "Luigi Vincenzo Puma"
+  Scenario: Search request with full name returns correct json
+    When I make a valid request by full name "Luigi%20Vincenzo%20Puma"
     Then I get back a Json array of Spartans that contain the full name "Luigi Vincenzo Puma"
 
   @Sad @Error
   Scenario: Search request with full name un-capitalised returns correct json
     When I make a valid request by full name "luigi vincenzo puma"
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
   @Sad @Error
   Scenario: Search request with full name capitalised returns correct json
     When I make a valid request by full name "LUIGI VINCENZO PUMA"
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
   @Happy @View
-  Scenario: Search request with first name un-capitalised returns correct json
+  Scenario: Search request with first name returns correct json
     When I make a valid request by first name "Luigi"
     Then I get back a Json array of Spartans that contain the first name "Luigi"
 
   @Sad @Error
   Scenario: Search request with first name un-capitalised returns correct json
     When I make a valid request by first name "luigi"
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
   @Sad @Error
   Scenario: Search request with first name capitalised returns correct json
     When I make a valid request by first name "LUIGI"
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
 
   @Happy @View
   Scenario: Search request with first and last name un-capitalised returns correct json
-    When I make a valid request by first and last name "Luigi Puma"
+    When I make a valid request by first and last name "Luigi%20Puma"
     Then I get back a Json array of Spartans that contain the first and last name "Luigi Puma"
 
   @Sad @Error
   Scenario: Search request with first and last name un-capitalised returns correct json
     When I make a valid request by first and last name "luigi puma"
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
   @Sad @Error
   Scenario: Search request with first and last name un-capitalised returns correct json
     When I make a valid request by first and last name "LUIGI PUMA"
-    Then I get back an error message ""
+    Then I get back an error message "No records found"
 
   @FullName @Happy @Status
   Scenario Outline: Search request with full name capitalised returns correct status code
