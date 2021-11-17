@@ -11,9 +11,6 @@ public class UtilStepdefs {
     public static CallManager callManager;
     public static IResponse iResponse;
 
-    @Then("I get an empty list")
-    public void iGetAnEmptyList() {
-    }
 
     @Then("I get back an error message")
     public void iGetBackAnErrorMessage() {
