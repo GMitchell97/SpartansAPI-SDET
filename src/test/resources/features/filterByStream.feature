@@ -8,9 +8,9 @@ Feature: Filter Spartan by stream name
 
     Examples:
     | stream |
-    | Java Dev |
-    | C# Dev   |
-    | Java SDET |
+    | Java%20Dev |
+    | C#%20Dev   |
+    | Java%20SDET |
 
   @Happy @Status
   Scenario Outline: Querying a Response code with a first-letter capitalised stream name
