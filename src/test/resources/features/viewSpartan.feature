@@ -1,4 +1,4 @@
-@SmokeTests @WIP @ViewAll
+@SmokeTests @ViewAll
 Feature: View all spartans
   @Happy @Status
   Scenario: Querying a Response code with view all spartans
