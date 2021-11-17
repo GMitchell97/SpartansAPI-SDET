@@ -23,84 +23,84 @@ Feature:  Filter Spartan By Spartan Name
 
   @Happy @View
   Scenario: Search request with full name un-capitalised returns correct json
-    When I make a valid request by full name "Daniel David White"
-    Then I get back a Json array of Spartans that contain the full name "Daniel David White"
+    When I make a valid request by full name "Luigi Vincenzo Puma"
+    Then I get back a Json array of Spartans that contain the full name "Luigi Vincenzo Puma"
 
   @Sad @Error
   Scenario: Search request with full name un-capitalised returns correct json
-    When I make a valid request by full name "daniel david white"
+    When I make a valid request by full name "luigi vincenzo puma"
     Then I get back an error message ""
 
   @Sad @Error
   Scenario: Search request with full name capitalised returns correct json
-    When I make a valid request by full name "DANIEL DAVID WHITE"
+    When I make a valid request by full name "LUIGI VINCENZO PUMA"
     Then I get back an error message ""
 
   @Happy @View
   Scenario: Search request with first name un-capitalised returns correct json
-    When I make a valid request by first name "Daniel"
-    Then I get back a Json array of Spartans that contain the first name "Daniel"
+    When I make a valid request by first name "Luigi"
+    Then I get back a Json array of Spartans that contain the first name "Luigi"
 
   @Sad @Error
   Scenario: Search request with first name un-capitalised returns correct json
-    When I make a valid request by first name "daniel"
+    When I make a valid request by first name "luigi"
     Then I get back an error message ""
 
   @Sad @Error
   Scenario: Search request with first name capitalised returns correct json
-    When I make a valid request by first name "DANIEL"
+    When I make a valid request by first name "LUIGI"
     Then I get back an error message ""
+
 
   @Happy @View
   Scenario: Search request with first and last name un-capitalised returns correct json
-    When I make a valid request by first and last name "Daniel White"
-    Then I get back a Json array of Spartans that contain the first and last name "Daniel White"
+    When I make a valid request by first and last name "Luigi Puma"
+    Then I get back a Json array of Spartans that contain the first and last name "Luigi Puma"
 
   @Sad @Error
   Scenario: Search request with first and last name un-capitalised returns correct json
-    When I make a valid request by first and last name "daniel white"
+    When I make a valid request by first and last name "luigi puma"
     Then I get back an error message ""
 
   @Sad @Error
   Scenario: Search request with first and last name un-capitalised returns correct json
-    When I make a valid request by first and last name "DANIEL WHITE"
+    When I make a valid request by first and last name "LUIGI PUMA"
     Then I get back an error message ""
-
 
   @FullName @Happy @Status
   Scenario Outline: Search request with full name capitalised returns correct status code
     When I make a valid request by full name "<Name>"
     Then I get back a <Response> response code
     Examples:
-      | Name              |  Response  |
-      | DANIEL DAVID WHITE|   204 |
-      | daniel david white|   204 |
-      | Daniel David White|   200 |
-      | an av it          |   200 |
-      | zzzzzzzzz zz zz |   204 |
+      | Name                | Response |
+      | LUIGI VINCENZO PUMA | 204      |
+      | luigi vincenzo puma | 204      |
+      | Luigi Vincenzo Puma | 200      |
+      | ui in um            | 200      |
+      | zzzzzzzzz zz zz     | 204      |
 
   @FirstName @Happy @Status
   Scenario Outline: Search request with first name returns correct status code
     When I make a valid request by first name "<Name>"
     Then I get back a <Response> response code
     Examples:
-    | Name    |  Response  |
-    |DANIEL   |   204      |
-    |daniel   |   204      |
-    |Daniel   |   200      |
-    |an       |   200      |
-    |zzzzzzzzz|   204      |
+      | Name      | Response |
+      | LUIGI     | 204      |
+      | luigi     | 204      |
+      | Luigi     | 200      |
+      | ui        | 200      |
+      | zzzzzzzzz | 204      |
 
   @FirstAndLastName @Happy @Status
   Scenario Outline: Search request with first and last name returns correct status code
     When I make a valid request by first and last name "<Name>"
     Then I get back a <Response> response code
     Examples:
-      | Name    |  Response  |
-      |DANIEL WHITE  |   204      |
-      |daniel white  |   204      |
-      |Daniel White  |   200      |
-      |an it         |   200      |
-      |zzzzz zzz     |   204      |
+      | Name       | Response |
+      | LUIGI PUMA | 204      |
+      | luigi puma | 204      |
+      | Luigi Puma | 200      |
+      | ui am      | 200      |
+      | zzzzz zzz  | 204      |
 
 
