@@ -2,8 +2,7 @@ package com.sparta.spartansapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
 import org.mockito.cglib.core.Local;
 
 import java.io.IOException;
