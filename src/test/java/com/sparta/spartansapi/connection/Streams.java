@@ -1,7 +1,7 @@
 package com.sparta.spartansapi.connection;
 
 public class Streams {
-    private static String endPointURL = ConnectionManager.getBaseURL() + "/courses";
+    private static String endPointURL = ConnectionManager.getBaseURL() + "/streams";
 
     public String getAllStreamsUrl() {
         return endPointURL + "/all";

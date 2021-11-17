@@ -1,7 +1,7 @@
 package com.sparta.spartansapi.connection;
 
 public class Spartan {
-    private static String endPointURL = ConnectionManager.getBaseURL() + "/spartan";
+    private static String endPointURL = ConnectionManager.getBaseURL() + "/spartans";
     
     public String getAll() {
         return endPointURL+"/all";
