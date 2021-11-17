@@ -20,7 +20,7 @@ public class ListOfSpartanDTO implements IResponse {
      */
     public boolean isSpartanInStream(String stream){
         for (SpartanDTO spartanDTO: spartans){
-            if (!spartanDTO.getStream().contains(stream)){
+            if (!spartanDTO.getStream().getName().equals(stream)){
                 return false;
             }
         }
@@ -34,7 +34,7 @@ public class ListOfSpartanDTO implements IResponse {
      */
     public boolean isSpartanInCourse(String course){
         for (SpartanDTO spartanDTO: spartans){
-            if (!spartanDTO.getCourse().contains(course)){
+            if (!spartanDTO.getCourse().getName().equals(course)){
                 return false;
             }
         }
