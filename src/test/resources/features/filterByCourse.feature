@@ -4,13 +4,13 @@ Feature: Filter Spartan by course name
   @Happy @View
   Scenario Outline: Querying a Spartan with a non-Capitalized course name
     When I make a valid request by course name "<course>"
-    Then I get back a list of Spartans that contain the course name "<course>"
+    Then I get back a list of Spartans that contain the course name "<course1>"
 
     Examples:
-      | course |
-      | Engineering%2095 |
-      | Business%2067   |
-      | Engineering%2096 |
+      | course |  course1 |
+      | Engineering%2095 | Engineering 95 |
+      | Business%2067   | Business 67     |
+      | Engineering%2096 | Engineering 96 |
 
   @Happy @Status
   Scenario Outline: Querying a Response code with course name
