@@ -1,9 +1,10 @@
 package com.sparta.spartansapi.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfSpartanDTO implements IResponse {
-    private List<SpartanDTO> spartans;
+    private List<SpartanDTO> spartans = new ArrayList<>();
 
     public List<SpartanDTO> getSpartans() {
         return spartans;
