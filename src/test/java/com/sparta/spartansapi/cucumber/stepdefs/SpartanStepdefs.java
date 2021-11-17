@@ -4,6 +4,7 @@ import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.connection.ConnectionManager;
 import com.sparta.spartansapi.dto.ErrorDTO;
 import com.sparta.spartansapi.dto.ListOfSpartanDTO;
+import com.sparta.spartansapi.dto.SpartanDTO;
 import com.sparta.spartansapi.injector.Injector;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -16,11 +17,14 @@ public class SpartanStepdefs {
 
 
     @When("I make a valid request by course name {string}")
-    public void iMakeAValidRequestByCourseName(String arg0) {
+    public void iMakeAValidRequestByCourseName(String course) {
+        callManager = new CallManager(ConnectionManager.getSpartan().getByCourse(course));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("I get back a list of Spartans that contain the course name {string}")
-    public void iGetBackAListOfSpartansThatContainTheCourseName(String arg0) {
+    public void iGetBackAListOfSpartansThatContainTheCourseName(String course) {
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInCourse(course));
     }
 
     @When("I search for Spartans who end their contract on a specified full date")
