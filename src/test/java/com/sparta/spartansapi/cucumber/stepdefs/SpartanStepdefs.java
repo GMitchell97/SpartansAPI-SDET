@@ -114,7 +114,7 @@ public class SpartanStepdefs {
 
     @When("I make a valid request by stream name {string}")
     public void iMakeAValidRequestByStreamName(String streamName) {
-        callManager = new CallManager(ConnectionManager.getSpartan().getByStream(streamName));
+        callManager = new CallManager(ConnectionManager.getSpartans().getByStream(streamName));
         iResponse = Injector.injectDTO(callManager);
     }
 
