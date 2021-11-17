@@ -2,6 +2,8 @@
 Feature: Update a spartan by Id
   Background:
     Given I use a valid API key
+    Given I have a valid spartan ID
+
   @Happy
   Scenario: If there is an id in the system I want to update the spartan
     When I make a valid POST request to an existing Id
