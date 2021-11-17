@@ -44,14 +44,22 @@ public class CallManager {
 
     private void postRequest(String url, String jsonString) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(url)).POST(HttpRequest.BodyPublishers.ofString(jsonString)).build();
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
+                .header("Content-Type","application/json")
+                .build();
 
         makeRequest(httpClient, httpRequest);
     }
 
     private void patchRequest(String url, String jsonString) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(url)).PUT(HttpRequest.BodyPublishers.ofString(jsonString)).build();
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .PUT(HttpRequest.BodyPublishers.ofString(jsonString))
+                .header("Content-Type","application/json")
+                .build();
 
         makeRequest(httpClient, httpRequest);
     }
