@@ -28,8 +28,3 @@ Feature: Filter by end date
   Scenario: Querying a response code for Spartans who end their contract using an invalid date
     When I search for Spartans who end their contract on an invalid full date
     Then I get back a 400 response code
-
-  @Sad @Empty
-  Scenario: Search for Spartans who end their contract using an invalid date
-    When I search for Spartans who end their contract on an invalid full date
-    Then I get back an empty list

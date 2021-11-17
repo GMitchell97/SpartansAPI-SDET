@@ -146,5 +146,23 @@ public class SpartanStepdefs {
     public void iMakeAValidRequestByLastName(String arg0) {
     }
 
+    @When("I search for Spartans who start their contract on a specified full date")
+    public void iSearchForSpartansWhoStartTheirContractOnASpecifiedFullDate() {
+    }
 
+    @Then("I get a list of Spartans who start their contract on the specified full date")
+    public void iGetAListOfSpartansWhoStartTheirContractOnTheSpecifiedFullDate() {
+    }
+
+    @When("I search for Spartans who start their contract who start their contract within a specified date range")
+    public void iSearchForSpartansWhoStartTheirContractWhoStartTheirContractWithinASpecifiedDateRange() {
+    }
+
+    @Then("I get a list of Spartans who start their contract within the specified date range")
+    public void iGetAListOfSpartansWhoStartTheirContractWithinTheSpecifiedDateRange() {
+    }
+
+    @When("I search for Spartans who start their contract on an invalid full date")
+    public void iSearchForSpartansWhoStartTheirContractOnAnInvalidFullDate() {
+    }
 }
