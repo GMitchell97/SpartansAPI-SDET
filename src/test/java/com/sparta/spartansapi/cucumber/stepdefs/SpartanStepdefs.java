@@ -111,14 +111,6 @@ public class SpartanStepdefs {
     public void iGetBackAJsonArrayOfSpartansThatContainTheFirstName(String arg0) {
     }
 
-    @When("I make a valid request by last name {string}")
-    public void iMakeAValidRequestByLastName(String lName) {
-
-    }
-
-    @Then("I get back a Json array of Spartans that contain the last name {string}")
-    public void iGetBackAJsonArrayOfSpartansThatContainTheLastName(String arg0) {
-    }
 
     @When("I make a valid request by stream name {string}")
     public void iMakeAValidRequestByStreamName(String streamName) {
@@ -133,6 +125,18 @@ public class SpartanStepdefs {
 
     @Then("I get back a JSON response containing all Spartans with that name")
     public void iGetBackAJSONResponseContainingAllSpartansWithThatName() {
-        Assertions.assertEquals(204, callManager.getStatusCode());
+        Assertions.assertEquals(204, callManager.getStatusCode()); // this is to do with the json not the status code needs changed
+    }
+
+    @When("I make a valid request by first and last name {string}")
+    public void iMakeAValidRequestByFirstAndLastName(String arg0) {
+    }
+
+    @Then("I get back a Json array of Spartans that contain the first and last name {string}")
+    public void iGetBackAJsonArrayOfSpartansThatContainTheFirstAndLastName(String arg0) {
+    }
+
+    @When("I make a valid request by last name {string}")
+    public void iMakeAValidRequestByLastName(String arg0) {
     }
 }
