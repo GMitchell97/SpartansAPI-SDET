@@ -22,8 +22,8 @@ Feature:  Filter Spartan By Spartan Name
     Then I get back an error message "No records found"
 
   @Happy @View
-  Scenario: Search request with full name un-capitalised returns correct json
-    When I make a valid request by full name "Luigi Vincenzo Puma"
+  Scenario: Search request with full name returns correct json
+    When I make a valid request by full name "Luigi%20Vincenzo%20Puma"
     Then I get back a Json array of Spartans that contain the full name "Luigi Vincenzo Puma"
 
   @Sad @Error
@@ -37,7 +37,7 @@ Feature:  Filter Spartan By Spartan Name
     Then I get back an error message "No records found"
 
   @Happy @View
-  Scenario: Search request with first name un-capitalised returns correct json
+  Scenario: Search request with first name returns correct json
     When I make a valid request by first name "Luigi"
     Then I get back a Json array of Spartans that contain the first name "Luigi"
 
@@ -54,7 +54,7 @@ Feature:  Filter Spartan By Spartan Name
 
   @Happy @View
   Scenario: Search request with first and last name un-capitalised returns correct json
-    When I make a valid request by first and last name "Luigi Puma"
+    When I make a valid request by first and last name "Luigi%20Puma"
     Then I get back a Json array of Spartans that contain the first and last name "Luigi Puma"
 
   @Sad @Error
