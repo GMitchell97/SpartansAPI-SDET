@@ -17,7 +17,7 @@ Feature: Update a spartan by Id
   @Happy @Confirm
   Scenario: If there is an id in the system I want to get back a message that the spartan has been updated
     When I make a valid PUT request to an existing Id
-    Then I get back an error message
+    Then I get back an error message ""
 
   @Sad @Status
   Scenario:  If there isn't an id in the system I want to get back a 404 response code
@@ -27,4 +27,4 @@ Feature: Update a spartan by Id
   @Sad @Error
   Scenario:  If there isn't an id in the system I want to get back a 404 response code
     When I make a valid PUT request to a non-existing Id
-    Then I get back an error message
+    Then I get back an error message ""

@@ -19,4 +19,4 @@ Feature: Add a Spartan to the database
   @Sad @Error
   Scenario: Trying to add a Spartan with an invalid field values, error message received
     When I make a request to add a spartan with incorrect fields
-    Then I get back an error message
+    Then I get back an error message ""

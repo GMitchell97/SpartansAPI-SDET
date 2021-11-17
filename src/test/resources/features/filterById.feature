@@ -23,4 +23,4 @@ Feature: Filtering By Id
   Scenario: If there isnt an id I get back an appropriate message
   When I make a valid request by id "61950614617e722ae9bfb034"
   And that id isnt in the database
-  Then I get back an error message
+  Then I get back an error message ""

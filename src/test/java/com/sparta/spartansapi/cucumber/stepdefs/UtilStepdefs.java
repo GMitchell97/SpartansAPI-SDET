@@ -1,6 +1,7 @@
 package com.sparta.spartansapi.cucumber.stepdefs;
 
 import com.sparta.spartansapi.connection.CallManager;
+import com.sparta.spartansapi.dto.ErrorDTO;
 import com.sparta.spartansapi.dto.IResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,8 +13,9 @@ public class UtilStepdefs {
     public static IResponse iResponse;
 
 
-    @Then("I get back an error message")
-    public void iGetBackAnErrorMessage() {
+    @Then("I get back an error message {string}")
+    public void iGetBackAnErrorMessage(String message) {
+        Assertions.assertEquals(message, ((ErrorDTO) iResponse).getMessage());
     }
 
     @Given("I use a valid API key")
@@ -24,5 +26,4 @@ public class UtilStepdefs {
     public void iGetBackAResponseCode(int code) {
         Assertions.assertEquals(code, callManager.getStatusCode());
     }
-
 }
