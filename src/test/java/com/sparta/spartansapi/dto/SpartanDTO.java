@@ -41,14 +41,14 @@ public class SpartanDTO implements IResponse{
     @JsonProperty("endDate")
     public String endDate;
     @JsonProperty("course")
-    public String course;
+    public CourseDTO course;
     @JsonProperty("stream")
-    public String stream;
+    public StreamDTO stream;
     @JsonProperty("email")
     public String email;
 
 
-    public SpartanDTO(String id, String firstName, String middleName, String lastName, String startDate, String endDate, String course, String stream, String email) {
+    public SpartanDTO(String id, String firstName, String middleName, String lastName, String startDate, String endDate, CourseDTO course, StreamDTO stream, String email) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -60,7 +60,7 @@ public class SpartanDTO implements IResponse{
         this.email = email;
     }
 
-    public SpartanDTO(String id, String firstName, String lastName, String startDate, String endDate, String course, String stream, String email) {
+    public SpartanDTO(String id, String firstName, String lastName, String startDate, String endDate, CourseDTO course, StreamDTO stream, String email) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = null;
@@ -99,11 +99,11 @@ public class SpartanDTO implements IResponse{
         return LocalDate.parse(endDate);
     }
 
-    public String getCourse() {
+    public CourseDTO getCourse() {
         return course;
     }
 
-    public String getStream() {
+    public StreamDTO getStream() {
         return stream;
     }
 
@@ -135,11 +135,11 @@ public class SpartanDTO implements IResponse{
         this.endDate = endDate;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(CourseDTO course) {
         this.course = course;
     }
 
-    public void setStream(String stream) {
+    public void setStream(StreamDTO stream) {
         this.stream = stream;
     }
 

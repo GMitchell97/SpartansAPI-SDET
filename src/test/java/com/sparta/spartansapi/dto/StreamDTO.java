@@ -15,18 +15,18 @@ public class StreamDTO implements IResponse {
     @JsonProperty("id")
     public String id;
     @JsonProperty("name")
-    public String firstName;
+    public String name;
     @JsonProperty("duration")
     public Integer duration;
 
     public StreamDTO(String id, String firstName, Integer duration) {
         this.id = id;
-        this.firstName = firstName;
+        this.name = firstName;
         this.duration = duration;
     }
 
     public StreamDTO(String firstName, Integer duration) {
-        this.firstName = firstName;
+        this.name = firstName;
         this.duration = duration;
     }
 
@@ -41,12 +41,12 @@ public class StreamDTO implements IResponse {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getDuration() {
