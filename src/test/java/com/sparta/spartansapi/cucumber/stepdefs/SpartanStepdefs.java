@@ -50,9 +50,6 @@ public class SpartanStepdefs {
     public void iSearchForSpartansWhoEndTheirContractOnAnInvalidFullDate() {
     }
 
-    @Then("I get back an empty list")
-    public void iGetBackAnEmptyList() {
-    }
 
     @When("I make a valid request by id {string}")
     public void iMakeAValidRequestById(String arg0) throws IOException, InterruptedException {
@@ -66,7 +63,7 @@ public class SpartanStepdefs {
 
     @Then("I get back a Spartan that contain the id {string}")
     public void iGetBackASpartanThatContainTheId(String arg0) {
-
+        Assertions.assertEquals(arg0,((ListOfSpartanDTO) iResponse).getSpartans().get(0).getId());
     }
 
     @And("that id isnt in the database")
