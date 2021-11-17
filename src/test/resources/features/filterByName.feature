@@ -1,7 +1,7 @@
 @SmokeTests @WIP @FilterName
 Feature:  Filter Spartan By Spartan Name
 
-  @Happy
+  @Happy @Status
   Scenario: Search request with a non-existing name
     When I make a valid request by a non-existing name
     Then I get back a 204 response code
@@ -11,7 +11,7 @@ Feature:  Filter Spartan By Spartan Name
     When I make a valid request by a non-existing name
     Then I get an empty list
 
-  @Happy
+  @Happy @Status
   Scenario: Search request with an empty name
     When I make valid request by an empty name
     Then I get back a 204 response code
@@ -62,7 +62,7 @@ Feature:  Filter Spartan By Spartan Name
     Then I get back an error message
 
 
-  @FullName @Happy
+  @FullName @Happy @Status
   Scenario Outline: Search request with full name capitalised returns correct status code
     When I make a valid request by full name "<Name>"
     Then I get back a <Response> response code
@@ -74,7 +74,7 @@ Feature:  Filter Spartan By Spartan Name
       | an av it          |   200 |
       | zzzzzzzzz zz zz |   204 |
 
-  @FirstName @Happy
+  @FirstName @Happy @Status
   Scenario Outline: Search request with first name returns correct status code
     When I make a valid request by first name "<Name>"
     Then I get back a <Response> response code
@@ -86,7 +86,7 @@ Feature:  Filter Spartan By Spartan Name
     |an       |   200      |
     |zzzzzzzzz|   204      |
 
-  @FirstAndLastName @Happy
+  @FirstAndLastName @Happy @Status
   Scenario Outline: Search request with first and last name returns correct status code
     When I make a valid request by first and last name "<Name>"
     Then I get back a <Response> response code

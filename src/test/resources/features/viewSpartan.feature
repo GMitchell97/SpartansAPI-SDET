@@ -1,6 +1,6 @@
 @SmokeTests @WIP @ViewAll
 Feature: View all spartans
-  @Happy
+  @Happy @Status
   Scenario: Querying a Response code with view all spartans
     When I make a GET request to all
     Then I get back a 200 response code
@@ -10,7 +10,7 @@ Feature: View all spartans
     When I make a GET request to all
     Then receive a list of all spartans in a json format
 
-  @Sad
+  @Sad @Status
   Scenario: Querying a Response code with an invalid request to view all spartans
     When I make a GET request to al
     Then I get back a 400 response code
