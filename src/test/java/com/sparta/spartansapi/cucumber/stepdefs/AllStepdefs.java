@@ -31,9 +31,5 @@ public class AllStepdefs {
     public void iMakeAGETRequestToAll() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAll());
     }
-
-    @When("I make a GET request to al")
-    public void iMakeAGETRequestToAl() throws IOException, InterruptedException {
-        callManager = new CallManager(ConnectionManager.getBaseURL() + "/spartan/al");
-    }
+    
 }
