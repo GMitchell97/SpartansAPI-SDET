@@ -30,26 +30,6 @@ public class SpartanStepdefs {
         Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInCourse(course));
     }
 
-    @When("I search for Spartans who end their contract on a specified full date")
-    public void iSearchForSpartansWhoEndTheirContractOnASpecifiedFullDate() {
-    }
-
-    @Then("I get a list of Spartans who end their contract on the specified full date")
-    public void iGetAListOfSpartansWhoEndTheirContractOnTheSpecifiedFullDate() {
-    }
-
-    @When("I search for Spartans who end their contract who end their contract within a specified date range")
-    public void iSearchForSpartansWhoEndTheirContractWhoEndTheirContractWithinASpecifiedDateRange() {
-    }
-
-    @Then("I get a list of Spartans who end their contract within the specified date range")
-    public void iGetAListOfSpartansWhoEndTheirContractWithinTheSpecifiedDateRange() {
-    }
-
-    @When("I search for Spartans who end their contract on an invalid full date")
-    public void iSearchForSpartansWhoEndTheirContractOnAnInvalidFullDate() {
-    }
-
     @Then("I get back an empty list")
     public void iGetBackAnEmptyList() {
     }
@@ -66,7 +46,6 @@ public class SpartanStepdefs {
 
     @Then("I get back a Spartan that contain the id {string}")
     public void iGetBackASpartanThatContainTheId(String arg0) {
-
     }
 
     @And("that id isnt in the database")
@@ -75,22 +54,6 @@ public class SpartanStepdefs {
 
     @Then("I Should get back an empty json array")
     public void iShouldGetBackAnEmptyJsonArray() {
-    }
-
-    @When("I make a valid request by year and month {string}")
-    public void iMakeAValidRequestByYearAndMonth(String arg0) {
-    }
-
-    @Then("I get back a Json array of Spartans that joined on or after {string}")
-    public void iGetBackAJsonArrayOfSpartansThatJoinedOnOrAfter(String arg0) {
-    }
-
-    @When("I make a valid request by year month and day {string}")
-    public void iMakeAValidRequestByYearMonthAndDay(String arg0) {
-    }
-
-    @When("I make a valid request by year {string}")
-    public void iMakeAValidRequestByYear(String arg0) {
     }
 
     @When("I make a valid request by a non-existing name")
@@ -144,25 +107,5 @@ public class SpartanStepdefs {
 
     @When("I make a valid request by last name {string}")
     public void iMakeAValidRequestByLastName(String arg0) {
-    }
-
-    @When("I search for Spartans who start their contract on a specified full date")
-    public void iSearchForSpartansWhoStartTheirContractOnASpecifiedFullDate() {
-    }
-
-    @Then("I get a list of Spartans who start their contract on the specified full date")
-    public void iGetAListOfSpartansWhoStartTheirContractOnTheSpecifiedFullDate() {
-    }
-
-    @When("I search for Spartans who start their contract who start their contract within a specified date range")
-    public void iSearchForSpartansWhoStartTheirContractWhoStartTheirContractWithinASpecifiedDateRange() {
-    }
-
-    @Then("I get a list of Spartans who start their contract within the specified date range")
-    public void iGetAListOfSpartansWhoStartTheirContractWithinTheSpecifiedDateRange() {
-    }
-
-    @When("I search for Spartans who start their contract on an invalid full date")
-    public void iSearchForSpartansWhoStartTheirContractOnAnInvalidFullDate() {
     }
 }
