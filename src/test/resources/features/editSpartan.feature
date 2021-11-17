@@ -1,3 +1,4 @@
+@mvp
 Feature: Update a spartan by Id
   Background:
     Given I use a valid API key

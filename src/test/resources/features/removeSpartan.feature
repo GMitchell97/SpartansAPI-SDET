@@ -1,3 +1,4 @@
+@mvp
 Feature: Remove a Spartan by Id
 
   @Happy
