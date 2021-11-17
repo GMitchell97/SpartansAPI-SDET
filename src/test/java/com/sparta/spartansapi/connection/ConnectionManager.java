@@ -1,18 +1,11 @@
 package com.sparta.spartansapi.connection;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-
 public class ConnectionManager {
 
     private static final String BASEURL = "/api";
 
-    public static Spartan getSpartan() {
-        return new Spartan();
+    public static Spartans getSpartans() {
+        return new Spartans();
     }
 
     public static Courses getCourses() {

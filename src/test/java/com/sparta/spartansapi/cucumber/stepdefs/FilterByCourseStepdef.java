@@ -21,7 +21,7 @@ public class FilterByCourseStepdef {
     private List<SpartanDTO> spartans;
     @When("I make a valid request by course name {string}")
     public void iMakeAValidRequestByCourseName(String courseName) {
-        callManager = new CallManager(ConnectionManager.getSpartan().getByCourse(courseName));
+        callManager = new CallManager(ConnectionManager.getSpartans().getByCourse(courseName));
         spartans= (List<SpartanDTO>) Injector.injectDTO(callManager);
     }
 
