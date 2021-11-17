@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class ConnectionManager {
 
-    private static final String BASEURL = "/api";
+    private static final String BASEURL = "http://localhost:8080";
 
     public static Spartan getSpartan() {
         return new Spartan();
