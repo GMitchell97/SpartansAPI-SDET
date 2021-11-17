@@ -2,41 +2,65 @@
 Feature: Filter Spartan by course name
 
   @Happy @View
-  Scenario: Querying a Spartan with a non-Capitalized course name
-    When I make a valid request by course name "Engineering"
-    Then I get back a list of Spartans that contain the course name "Engineering"
+  Scenario Outline: Querying a Spartan with a non-Capitalized course name
+    When I make a valid request by course name "<course>"
+    Then I get back a list of Spartans that contain the course name "<course>"
+
+    Examples:
+      | course |
+      | Engineering 95 |
+      | Business 67   |
+      | Engineering 96 |
 
   @Happy @Status
-  Scenario: Querying a Response code with a non-Capitalized course name
-    When I make a valid request by course name "Engineering"
-    Then I get back a 200 response code
+  Scenario Outline: Querying a Response code with course name
+    When I make a valid request by course name "<course>"
+    Then I get back a <response> response code
 
-  @Sad @Error
-  Scenario: Querying a Spartan with a Capitalized course name
-    When I make a valid request by course name "ENGINEERING"
-    Then I get back an error message
-
-  @Happy @Status
-  Scenario: Querying a Response code with a Capitalized course name
-    When I make a valid request by course name "ENGINEERING"
-    Then I get back a 204 response code
-
-  @Happy @Error
-  Scenario: Querying a Spartan with a non-Capitalized course name
-    When I make a valid request by course name "engineering"
-    Then I get back an error message
-
-  @Happy @Status
-  Scenario: Querying a Response code with a non-Capitalized course name
-    When I make a valid request by course name "engineering"
-    Then I get back a 204 response code
+    Examples:
+      | course | response |
+      | Engineering 95 | 200 |
+      | Business 67   | 200  |
+      | Engineering 96 | 200 |
+      | ENGINEERING 95 | 204 |
+      | engineering 96 | 204 |
+      | BUSINESS 67 | 204    |
+      | engineering | 204    |
+      | Maths       | 204    |
 
   @Happy @Error
-  Scenario: Querying a Spartan with an invalid course name
-    When I make a valid request by course name "Maths"
+  Scenario Outline: Querying a Spartan with an valid course name
+    When I make a valid request by course name "<course>"
     Then I get back an error message
 
-  @Happy @Error
-  Scenario: Querying a response code with an invalid course name
-    When I make a valid request by course name "Maths"
-    Then I get back a 204 response code
+    Examples:
+      | course |
+      | ENGINEERING 95 |
+      | engineering 96 |
+      | BUSINESS 67 |
+      | engineering |
+      | asdfghjkl  |
+      | Maths      |
+
+    @Sad @Error
+      Scenario Outline: Querying a response with an invalid course name
+        When I make a valid request by course name "<course>"
+        Then I get back an error message
+
+      Examples:
+        | course |
+        | afad1324 |
+        | 345678;  |
+        | asd dsa  |
+
+  @Sad @Status
+  Scenario Outline: Querying a response with an invalid course name
+    When I make a valid request by course name "<course>"
+    Then I get back an error message
+
+    Examples:
+      | course |
+      | afad1324 |
+      | 345678;  |
+      | asd dsa  |
+
