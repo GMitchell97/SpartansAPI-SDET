@@ -1,5 +1,6 @@
 package com.sparta.spartansapi.cucumber.stepdefs;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.connection.ConnectionManager;
 import com.sparta.spartansapi.dto.ErrorDTO;
@@ -11,13 +12,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
+import java.io.IOException;
+
 import static com.sparta.spartansapi.cucumber.stepdefs.UtilStepdefs.*;
 
 public class SpartanStepdefs {
 
 
     @When("I make a valid request by course name {string}")
-    public void iMakeAValidRequestByCourseName(String course) {
+    public void iMakeAValidRequestByCourseName(String course) throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getByCourse(course));
         iResponse = Injector.injectDTO(callManager);
     }
@@ -52,7 +55,7 @@ public class SpartanStepdefs {
     }
 
     @When("I make a valid request by id {string}")
-    public void iMakeAValidRequestById(String arg0) {
+    public void iMakeAValidRequestById(String arg0) throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getById(arg0));
         iResponse = Injector.injectDTO(callManager);
     }
@@ -116,7 +119,7 @@ public class SpartanStepdefs {
 
 
     @When("I make a valid request by stream name {string}")
-    public void iMakeAValidRequestByStreamName(String streamName) {
+    public void iMakeAValidRequestByStreamName(String streamName) throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getByStream(streamName));
         iResponse = Injector.injectDTO(callManager);
     }

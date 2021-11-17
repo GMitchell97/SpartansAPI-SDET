@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
+import java.io.IOException;
 import java.net.ConnectException;
 
 import static com.sparta.spartansapi.cucumber.stepdefs.UtilStepdefs.callManager;
@@ -16,7 +17,7 @@ import static com.sparta.spartansapi.cucumber.stepdefs.UtilStepdefs.iResponse;
 public class AllStepdefs {
 
     @When("I make a GET request to get all spartans")
-    public void iMakeAGETRequestTo() {
+    public void iMakeAGETRequestTo() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAll());
         //iResponse = Injector.injectDTO(callManager);
     }
@@ -27,12 +28,12 @@ public class AllStepdefs {
     }
 
     @When("I make a GET request to all")
-    public void iMakeAGETRequestToAll() {
+    public void iMakeAGETRequestToAll() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAll());
     }
 
     @When("I make a GET request to al")
-    public void iMakeAGETRequestToAl() {
+    public void iMakeAGETRequestToAl() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getBaseURL() + "/spartan/al");
     }
 }
