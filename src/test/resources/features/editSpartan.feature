@@ -1,3 +1,4 @@
+@SmokeTests @Update @WIP
 Feature: Update a spartan by Id
   Background:
     Given I use a valid API key
@@ -6,22 +7,22 @@ Feature: Update a spartan by Id
     When I make a valid POST request to an existing Id
     Then the spartan should be updated
 
-  @Happy
+  @Happy @Status
   Scenario: If there is an id in the system I want to get back a 200 response code
     When I make a valid POST request to an existing Id
     Then I get back a 200 response code
 
-  @Happy
+  @Happy @Confirm
   Scenario: If there is an id in the system I want to get back a message that the spartan has been updated
     When I make a valid POST request to an existing Id
     Then I get back a message that the spartan has been updated
 
-  @Sad
+  @Sad @Status
   Scenario:  If there isn't an id in the system I want to get back a 404 response code
     When I make a valid POST request to a non-existing Id
     Then I get back a 404 response code
 
-  @Sad
+  @Sad @Error
   Scenario:  If there isn't an id in the system I want to get back a 404 response code
     When I make a valid POST request to a non-existing Id
     Then I get back an error message

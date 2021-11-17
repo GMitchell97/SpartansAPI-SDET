@@ -17,7 +17,7 @@ public class AllStepdefs {
 
     @When("I make a GET request to get all spartans")
     public void iMakeAGETRequestTo() {
-        callManager = new CallManager(ConnectionManager.getSpartan().getAll());
+        callManager = new CallManager(ConnectionManager.getSpartans().getAll());
         //iResponse = Injector.injectDTO(callManager);
     }
 
@@ -28,7 +28,7 @@ public class AllStepdefs {
 
     @When("I make a GET request to all")
     public void iMakeAGETRequestToAll() {
-        callManager = new CallManager(ConnectionManager.getSpartan().getAll());
+        callManager = new CallManager(ConnectionManager.getSpartans().getAll());
     }
 
     @When("I make a GET request to al")

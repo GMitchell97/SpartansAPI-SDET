@@ -3,23 +3,23 @@ package com.sparta.spartansapi.connection;
 public class Streams {
     private static String endPointURL = ConnectionManager.getBaseURL() + "/streams";
 
-    public String getAllStreamsUrl() {
-        return endPointURL + "/all";
+    public String getAll() {
+        return endPointURL;
     }
 
-    public String getByStreamNameUrl(String streamName) {
-        return endPointURL + "/stream?name=" + streamName;
+    public String getByStreamName(String streamName) {
+        return endPointURL + "?name=" + streamName;
     }
 
     public String getAddStreamUrl() {
-        return endPointURL + "/add";
+        return endPointURL;
     }
 
-    public String getStreamUpdateUrl(String spartanId) {
-        return endPointURL+"/update/" + spartanId;
+    public String getStreamUpdateUrl(String streamId) {
+        return endPointURL+ "/" + streamId;
     }
 
-    public String getStreamDeleteUrl(String spartanId) {
-        return endPointURL+"/delete/" + spartanId;
+    public String getStreamDeleteUrl(String streamId) {
+        return endPointURL+ "/" + streamId;
     }
 }

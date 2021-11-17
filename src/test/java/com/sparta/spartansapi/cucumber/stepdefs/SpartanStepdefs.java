@@ -18,7 +18,7 @@ public class SpartanStepdefs {
 
     @When("I make a valid request by course name {string}")
     public void iMakeAValidRequestByCourseName(String course) {
-        callManager = new CallManager(ConnectionManager.getSpartan().getByCourse(course));
+        callManager = new CallManager(ConnectionManager.getSpartans().getByCourse(course));
         iResponse = Injector.injectDTO(callManager);
     }
 
@@ -114,7 +114,7 @@ public class SpartanStepdefs {
 
     @When("I make a valid request by stream name {string}")
     public void iMakeAValidRequestByStreamName(String streamName) {
-        callManager = new CallManager(ConnectionManager.getSpartan().getByStream(streamName));
+        callManager = new CallManager(ConnectionManager.getSpartans().getByStream(streamName));
         iResponse = Injector.injectDTO(callManager);
     }
 
