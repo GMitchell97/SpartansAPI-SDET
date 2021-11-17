@@ -1,7 +1,7 @@
 @WIP @FilterStream
 Feature: Filter Spartan by stream name
 
-  @Happy
+  @Happy @View
   Scenario: Querying a Spartan with a first-letter capitalised stream name
     When I make a valid request by stream name "Java"
     Then I get back a JSON response containing all Spartans with that String in their streamname
@@ -16,7 +16,7 @@ Feature: Filter Spartan by stream name
     When I make a valid request by stream name "java"
     Then I get back a 204 response code
 
-  @Sad
+  @Sad @Error
   Scenario: Querying a Spartan with an invalid stream name
     When I make a valid request by stream name "java"
     Then I get back an error message
@@ -26,7 +26,7 @@ Feature: Filter Spartan by stream name
     When I make a valid request by stream name "JAVA"
     Then I get back a 204 response code
 
-  @Happy
+  @Happy @Error
   Scenario: Querying a Spartan with an capitalised stream name
     When I make a valid request by stream name "JAVA"
     Then I get back an error message
@@ -36,7 +36,7 @@ Feature: Filter Spartan by stream name
     When I make a valid request by stream name "Ruby"
     Then I get back a 204 response code
 
-  @Sad
+  @Sad @Error
   Scenario: Querying a Spartan with an invalid stream name
     When I make a valid request by stream name "Ruby"
     Then I get back an error message

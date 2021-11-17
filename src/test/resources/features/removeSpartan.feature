@@ -6,7 +6,7 @@ Feature: Remove a Spartan by Id
     When I make a request to remove a spartan with ID "validid"
     Then I get back a 200 response code
 
-  @Happy
+  @Happy @Confirm
   Scenario: Trying to remove a Spartan with a valid Id, correct message returned
     When I make a request to remove a spartan with ID "validid"
     Then I get back a message that "validid" has been deleted
@@ -16,7 +16,7 @@ Feature: Remove a Spartan by Id
     When I make a request to remove a spartan with ID "invalidid"
     Then I get back a 400 response code
 
-  @Sad
+  @Sad @Error
   Scenario: Trying to remove a Spartan with an invalid Id, error message returned
     When I make a request to remove a spartan with ID "invalidid"
     Then I get back an error message
