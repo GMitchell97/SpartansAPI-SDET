@@ -38,7 +38,8 @@ public class Injector {
     private static ListOfSpartanDTO getListOfSpartans(JsonNode jsonNode) throws JsonProcessingException {
         ListOfSpartanDTO listOfSpartanDTO = new ListOfSpartanDTO();
         for (JsonNode spartan: jsonNode) {
-            listOfSpartanDTO.addSpartan(objectMapper.readValue(spartan.asText(), SpartanDTO.class));
+            SpartanDTO spartanDTO = objectMapper.treeToValue(spartan, SpartanDTO.class);
+            listOfSpartanDTO.addSpartan(spartanDTO);
         }
         return listOfSpartanDTO;
     }

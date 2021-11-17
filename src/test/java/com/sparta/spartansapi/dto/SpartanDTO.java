@@ -1,5 +1,8 @@
 package com.sparta.spartansapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,20 +15,41 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Locale;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "id",
+        "firstName",
+        "middleName",
+        "lastName",
+        "startDate",
+        "endDate",
+        "course",
+        "stream",
+        "email"
+})
 public class SpartanDTO implements IResponse{
 
-    private String id;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private String course;
-    private String stream;
-    private String email;
+    @JsonProperty("id")
+    public String id;
+    @JsonProperty("firstName")
+    public String firstName;
+    @JsonProperty("middleName")
+    public String middleName;
+    @JsonProperty("lastName")
+    public String lastName;
+    @JsonProperty("startDate")
+    public String startDate;
+    @JsonProperty("endDate")
+    public String endDate;
+    @JsonProperty("course")
+    public String course;
+    @JsonProperty("stream")
+    public String stream;
+    @JsonProperty("email")
+    public String email;
 
 
-    public SpartanDTO(String id, String firstName, String middleName, String lastName, LocalDate startDate, LocalDate endDate, String course, String stream, String email) {
+    public SpartanDTO(String id, String firstName, String middleName, String lastName, String startDate, String endDate, String course, String stream, String email) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -37,7 +61,7 @@ public class SpartanDTO implements IResponse{
         this.email = email;
     }
 
-    public SpartanDTO(String id, String firstName, String lastName, LocalDate startDate, LocalDate endDate, String course, String stream, String email) {
+    public SpartanDTO(String id, String firstName, String lastName, String startDate, String endDate, String course, String stream, String email) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = null;
@@ -69,11 +93,11 @@ public class SpartanDTO implements IResponse{
     }
 
     public LocalDate getStartDate() {
-        return startDate;
+        return LocalDate.parse(startDate);
     }
 
     public LocalDate getEndDate() {
-        return endDate;
+        return LocalDate.parse(endDate);
     }
 
     public String getCourse() {
@@ -104,11 +128,11 @@ public class SpartanDTO implements IResponse{
         this.lastName = lastName;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -130,7 +154,7 @@ public class SpartanDTO implements IResponse{
      * @return whether or not the start date is equal to the date
      */
     public boolean isStartDateEqual(LocalDate date) {
-        return startDate.isEqual(date);
+        return getStartDate().isEqual(date);
     }
 
     /**
@@ -139,7 +163,7 @@ public class SpartanDTO implements IResponse{
      * @return whether or not the start date is equal to the date
      */
     public boolean isStartDateEqual(String date) {
-        return startDate.isEqual(LocalDate.parse(date));
+        return getStartDate().isEqual(LocalDate.parse(date));
     }
 
     /**
@@ -148,7 +172,7 @@ public class SpartanDTO implements IResponse{
      * @return whether or not the end date is equal to the date
      */
     public boolean isEndDateEqual(LocalDate date) {
-        return endDate.isEqual(date);
+        return getEndDate().isEqual(date);
     }
 
     /**
@@ -157,7 +181,7 @@ public class SpartanDTO implements IResponse{
      * @return whether or not the end date is equal to the date
      */
     public boolean isEndDateEqual(String date) {
-        return endDate.isEqual(LocalDate.parse(date));
+        return getEndDate().isEqual(LocalDate.parse(date));
     }
 
     /**
@@ -168,7 +192,7 @@ public class SpartanDTO implements IResponse{
      */
     public boolean isStartDateWithinRange(LocalDate dateLower, LocalDate dateUpper) {
         // TODO: Implement what happens when the second date is earlier than the first date
-        return !(startDate.isBefore(dateLower) || startDate.isAfter(dateUpper));
+        return !(getStartDate().isBefore(dateLower) || getStartDate().isAfter(dateUpper));
     }
 
     /**
@@ -179,8 +203,8 @@ public class SpartanDTO implements IResponse{
      */
     public boolean isStartDateWithinRange(String dateLower, String dateUpper) {
         // TODO: Implement what happens when the second date is earlier than the first date
-        return !(startDate.isBefore(LocalDate.parse(dateLower)) ||
-                startDate.isAfter(LocalDate.parse(dateUpper)));
+        return !(getStartDate().isBefore(LocalDate.parse(dateLower)) ||
+                getStartDate().isAfter(LocalDate.parse(dateUpper)));
     }
 
     /**
@@ -191,7 +215,7 @@ public class SpartanDTO implements IResponse{
      */
     public boolean isEndDateWithinRange(LocalDate dateLower, LocalDate dateUpper) {
         // TODO: Implement what happens when the second date is earlier than the first date
-        return !(endDate.isBefore(dateLower) || endDate.isAfter(dateUpper));
+        return !(getEndDate().isBefore(dateLower) || getEndDate().isAfter(dateUpper));
     }
 
     /**
@@ -202,8 +226,8 @@ public class SpartanDTO implements IResponse{
      */
     public boolean isEndDateWithinRange(String dateLower, String dateUpper) {
         // TODO: Implement what happens when the second date is earlier than the first date
-        return !(endDate.isBefore(LocalDate.parse(dateLower)) ||
-                endDate.isAfter(LocalDate.parse(dateUpper)));
+        return !(getEndDate().isBefore(LocalDate.parse(dateLower)) ||
+                getEndDate().isAfter(LocalDate.parse(dateUpper)));
     }
 
     /**
@@ -228,8 +252,8 @@ public class SpartanDTO implements IResponse{
      */
     public boolean isValidStartDate() {
         // TODO: review whether startDate and endDate can be the same
-        return isDateEqualOrAfterFoundingYear(startDate) &&
-                (startDate.isEqual(endDate) || startDate.isBefore(endDate));
+        return isDateEqualOrAfterFoundingYear(getStartDate()) &&
+                (getStartDate().isEqual(getEndDate()) || getStartDate().isBefore(getEndDate()));
     }
 
     /**
@@ -241,8 +265,8 @@ public class SpartanDTO implements IResponse{
             return true;
         }
         // TODO: review whether startDate and endDate can be the same
-        return isDateEqualOrAfterFoundingYear(endDate) &&
-                (endDate.isEqual(startDate) || endDate.isAfter(startDate));
+        return isDateEqualOrAfterFoundingYear(getEndDate()) &&
+                (getEndDate().isEqual(getStartDate()) || getEndDate().isAfter(getStartDate()));
     }
 
     /**
