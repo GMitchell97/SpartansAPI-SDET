@@ -21,23 +21,18 @@ public class Injector {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static IResponse injectDTO(CallManager callManager) {
-        try {
-            JsonNode jsonObject = objectMapper.readTree(callManager.getJson());
-            if (jsonObject.getNodeType() == JsonNodeType.ARRAY) {
-                return getListOfSpartans(jsonObject);
-            } else {
-                return getError(jsonObject);
-            }
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+    public static IResponse injectDTO(CallManager callManager) throws JsonProcessingException {
+        JsonNode jsonObject = objectMapper.readTree(callManager.getJson());
+        if (jsonObject.getNodeType() == JsonNodeType.ARRAY) {
+            return getListOfSpartans(jsonObject);
+        } else {
+            return getError(jsonObject);
         }
-        return null;
     }
 
     private static ListOfSpartanDTO getListOfSpartans(JsonNode jsonNode) throws JsonProcessingException {
         ListOfSpartanDTO listOfSpartanDTO = new ListOfSpartanDTO();
-        for (JsonNode spartan: jsonNode) {
+        for (JsonNode spartan : jsonNode) {
             SpartanDTO spartanDTO = objectMapper.treeToValue(spartan, SpartanDTO.class);
             listOfSpartanDTO.addSpartan(spartanDTO);
         }
