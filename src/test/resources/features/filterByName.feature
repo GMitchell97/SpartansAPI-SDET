@@ -1,3 +1,4 @@
+@mvp
 Feature:  Filter Spartan By Spartan Name
 
   Scenario: Search request with a non-existing name

@@ -1,5 +1,5 @@
+@mvp
 Feature: Filter Spartan by course name
-
 
   Scenario: Querying a Spartan with a Capitalized course name
     When I make a valid request by course name "ENGINEERING"

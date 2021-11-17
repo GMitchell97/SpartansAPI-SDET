@@ -1,11 +1,11 @@
 Feature: Add a Spartan to the database
 
-  @Happy
+  @Happy @mvp
   Scenario: Add a new entry in spartan collection with all valid fields, status code 200 received
     When I make a request to add a spartan with correct fields
     Then I get back a 200 response code
 
-  @Happy
+  @Happy @mvp
   Scenario: Add a new entry in spartan collection with all valid fields
     When I make a request to add a spartan with correct fields
     Then I get back a message that "spartanId" has been added
