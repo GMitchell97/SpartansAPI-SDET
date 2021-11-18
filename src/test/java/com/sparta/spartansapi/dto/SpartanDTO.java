@@ -273,4 +273,8 @@ public class SpartanDTO implements IResponse{
             return false;
         }
     }
+
+    public boolean isEmailValidFormat(){
+        return getEmail().contains("@spartaglobal.com");
+    }
 }

@@ -94,14 +94,17 @@ public class SpartanStepdefs {
     public void iGetBackAJsonArrayOfSpartansThatContainTheFirstAndLastName(String arg0) {
     }
 
-    @When("I make a valid request by last name {string}")
-    public void iMakeAValidRequestByLastName(String arg0) {
+
+    @Then("The email should end with @spartaglobal.com")
+    public void theEmailShouldEndWithSpartaglobalCom() {
+        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
     }
 
     @When("I search for Spartans who start their contract on a specified full date")
     public void iSearchForSpartansWhoStartTheirContractOnASpecifiedFullDate() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getByStartDate("2022-09-04")); // TODO: implement parameterised tests
         iResponse = Injector.injectDTO(callManager);
+
     }
 
     @Then("I get a list of Spartans who start their contract on the specified full date")
