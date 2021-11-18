@@ -37,7 +37,9 @@ public class CallManager {
 
     private void getRequest(String url) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(url)).build();
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .build();
 
         makeRequest(httpClient, httpRequest);
     }
