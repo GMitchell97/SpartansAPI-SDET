@@ -56,4 +56,13 @@ public class StreamDTO implements IResponse {
     public void setDuration(Integer duration) {
         this.duration = duration;
     }
+
+    @Override
+    public String toString() {
+        return "StreamDTO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", duration=" + duration +
+                '}';
+    }
 }
