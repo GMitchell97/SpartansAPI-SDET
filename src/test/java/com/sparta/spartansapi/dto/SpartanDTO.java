@@ -42,9 +42,9 @@ public class SpartanDTO implements IResponse{
     @JsonProperty("endDate")
     private String endDate;
     @JsonProperty("course")
-    private String course;
+    private CourseDTO course;
     @JsonProperty("stream")
-    private String stream;
+    private StreamDTO stream;
     @JsonProperty("email")
     private String email;
 
@@ -72,11 +72,11 @@ public class SpartanDTO implements IResponse{
         return endDate;
     }
 
-    public String getCourse() {
+    public CourseDTO getCourse() {
         return course;
     }
 
-    public String getStream() {
+    public StreamDTO getStream() {
         return stream;
     }
 
@@ -112,11 +112,11 @@ public class SpartanDTO implements IResponse{
         this.endDate = endDate;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(CourseDTO course) {
         this.course = course;
     }
 
-    public void setStream(String stream) {
+    public void setStream(StreamDTO stream) {
         this.stream = stream;
     }
 

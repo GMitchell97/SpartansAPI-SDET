@@ -25,9 +25,12 @@ public class Injector {
         JsonNode jsonObject = objectMapper.readTree(callManager.getJson());
         if (jsonObject.getNodeType() == JsonNodeType.ARRAY) {
             return getListOfSpartans(jsonObject);
-        } else {
+        } else if (jsonObject.has("id")){
+            return getSpartan(jsonObject);
+        } else if (jsonObject.has("error")) {
             return getError(jsonObject);
         }
+        return null;
     }
 
     private static ListOfSpartanDTO getListOfSpartans(JsonNode jsonNode) throws JsonProcessingException {
@@ -40,7 +43,11 @@ public class Injector {
     }
 
     private static ErrorDTO getError(JsonNode jsonNode) throws JsonProcessingException {
-        return objectMapper.readValue(jsonNode.asText(), ErrorDTO.class);
+        return objectMapper.treeToValue(jsonNode, ErrorDTO.class);
+    }
+
+    private static SpartanDTO getSpartan(JsonNode jsonNode) throws JsonProcessingException {
+        return objectMapper.treeToValue(jsonNode, SpartanDTO.class);
     }
 }
 

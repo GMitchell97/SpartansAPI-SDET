@@ -2,41 +2,46 @@
 Feature: Filter Spartan by stream name
 
   @Happy @View
-  Scenario: Querying a Spartan with a first-letter capitalised stream name
-    When I make a valid request by stream name "Java"
-    Then I get back a JSON response containing all Spartans with that String in their streamname
+  Scenario Outline: Querying a Spartan with a first-letter capitalised stream name
+    When I make a valid request by stream name "<stream>"
+    Then I get back a JSON response containing all Spartans with that String in their stream name "<stream1>"
+
+    Examples:
+    | stream | stream1 |
+    | Java%20Dev | Java Dev|
+    | C#%20Dev   | C# Dev  |
+    | Java%20SDET | Java SDET|
 
   @Happy @Status
-  Scenario: Querying a Response code with a first-letter capitalised stream name
-    When I make a valid request by stream name "Java"
-    Then I get back a 200 response code
+  Scenario Outline: Querying a Response code with a first-letter capitalised stream name
+    When I make a valid request by stream name "<stream>"
+    Then I get back a <response> response code
 
-  @Happy @Status
-  Scenario: Querying a response code with a non-Capitalised stream name
-    When I make a valid request by stream name "java"
-    Then I get back a 204 response code
+    Examples:
+      | stream | response |
+      | Java%20Dev | 200    |
+      | C#%20Dev   | 200    |
+      | Java%20SDET | 200   |
+      | java      | 204   |
+      | JAVA      | 204   |
+      | Ruby      | 204   |
 
   @Sad @Error
-  Scenario: Querying a Spartan with an invalid stream name
-    When I make a valid request by stream name "java"
-    Then I get back an error message
+  Scenario Outline: Querying a Spartan with an invalid stream name
+    When I make a valid request by stream name "<stream>"
+    Then I get back an error message "Field format invalid"
 
-  @Happy @Status
-  Scenario: Querying a Response code with a capitalised stream name
-    When I make a valid request by stream name "JAVA"
-    Then I get back a 204 response code
+    Examples:
+      | stream |
+      | 345678;  |
+      | asd dsa  |
 
-  @Happy @Error
-  Scenario: Querying a Spartan with an capitalised stream name
-    When I make a valid request by stream name "JAVA"
-    Then I get back an error message
+  @Sad @Status
+  Scenario Outline: Querying a Response with an invalid stream name
+    When I make a valid request by stream name "<stream>"
+    Then I get back a <response> response code
 
-  @Happy @Status
-  Scenario: Querying a Response code with an invalid stream name
-    When I make a valid request by stream name "Ruby"
-    Then I get back a 204 response code
-
-  @Sad @Error
-  Scenario: Querying a Spartan with an invalid stream name
-    When I make a valid request by stream name "Ruby"
-    Then I get back an error message
+    Examples:
+      | stream | response |
+      | 345678;  | 400    |
+      | asd dsa  | 400    |
