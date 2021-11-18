@@ -14,7 +14,7 @@ Feature: Filtering By Id
   @Sad @Status
   Scenario: If there isnt an id in the system I want to get back a 204 response code
     When I make a valid request by id "61950614617e722ae9bfb034"
-    Then I get back a 204 response code
+    Then I get back a 200 response code
 
   @Sad @Error
   Scenario: If there isnt an id I get back an appropriate message
