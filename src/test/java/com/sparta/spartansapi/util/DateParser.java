@@ -18,8 +18,10 @@ public class DateParser {
         try {
             ld = LocalDate.parse(d);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Failed to parse datestring " + dateStr + " into a LocalDate!");
+            //e.printStackTrace();
         }
+        // TODO: review what happens if format is invalid/LocalDate.parse fails - throw error, return null or both?
         return ld;
     }
 
