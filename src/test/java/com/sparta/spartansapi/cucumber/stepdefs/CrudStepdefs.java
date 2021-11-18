@@ -72,10 +72,9 @@ public class CrudStepdefs {
                         "        \"middleName\": null,\n" +
                         "        \"lastName\": null,\n" +
                         "        \"startDate\": null,\n" +
-                        "        \"endDate\": null,\n" +
                         "        \"course\": null,\n" +
                         "        \"stream\":null,\n" +
-                        "        \"email\": null,\n" +
+                        "        \"email\": null\n" +
                         "    }");
 
         iResponse = Injector.injectDTO(callManager);
@@ -134,13 +133,15 @@ public class CrudStepdefs {
 
     @When("I make a request to remove a spartan with valid ID")
     public void iMakeARequestToRemoveASpartanWithValidID() throws IOException, InterruptedException {
-        CallManager callManager = new CallManager(ConnectionManager.getSpartans().getDeleteSpartanUrl(id), CallManager.Methods.DELETE);
+        callManager = new CallManager(ConnectionManager.getSpartans().getDeleteSpartanUrl(id), CallManager.Methods.DELETE);
+        iResponse = Injector.injectDTO(callManager);
         id = null;
     }
 
     @When("I make a request to remove a spartan with invalid ID")
     public void iMakeARequestToRemoveASpartanWithInvalidID() throws IOException, InterruptedException {
-        CallManager callManager = new CallManager(ConnectionManager.getSpartans().getDeleteSpartanUrl("invalid-id"));
+         callManager = new CallManager(ConnectionManager.getSpartans().getDeleteSpartanUrl("invalid-id"), CallManager.Methods.DELETE);
+         iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("I get back the new spartan")
