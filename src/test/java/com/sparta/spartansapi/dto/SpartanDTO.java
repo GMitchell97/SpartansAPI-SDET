@@ -274,7 +274,13 @@ public class SpartanDTO implements IResponse{
         }
     }
 
+
+    public String getFirstInital(){
+        return getFirstName().substring(0,1);
+    }
+
+
     public boolean isEmailValidFormat(){
-        return getEmail().contains("@spartaglobal.com");
+        return getEmail().equals(getFirstInital()+getLastName()+"@spartaglobal.com");
     }
 }
