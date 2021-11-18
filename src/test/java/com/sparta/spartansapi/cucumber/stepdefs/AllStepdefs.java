@@ -31,5 +31,4 @@ public class AllStepdefs {
     public void iMakeAGETRequestToAll() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAll());
     }
-    
 }

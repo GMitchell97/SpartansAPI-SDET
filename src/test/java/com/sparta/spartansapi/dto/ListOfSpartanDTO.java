@@ -1,18 +1,46 @@
 package com.sparta.spartansapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListOfSpartanDTO implements IResponse {
-    private List<SpartanDTO> spartans = new ArrayList<>();
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "results",
+        "message",
+        "count",
+        "status_code"
+})
 
-    public List<SpartanDTO> getSpartans() {
-        return spartans;
+public class ListOfSpartanDTO implements IResponse {
+    @JsonProperty("results")
+    private List<SpartanDTO> results;
+    @JsonProperty("message")
+    private String message;
+    @JsonProperty("count")
+    private int count;
+    @JsonProperty("status_code")
+    private int statusCode;
+
+    public String getMessage() {
+        return message;
     }
-    public void addSpartan(SpartanDTO spartanDTO){
-        spartans.add(spartanDTO);
+
+    public int getCount() {
+        return count;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public List<SpartanDTO> getResults() {
+        return results;
     }
 
     /**
@@ -21,7 +49,7 @@ public class ListOfSpartanDTO implements IResponse {
      * @return if all spartans in list have stream
      */
     public boolean isSpartanInStream(String stream){
-        for (SpartanDTO spartanDTO: spartans){
+        for (SpartanDTO spartanDTO: results){
             if (!spartanDTO.getStream().getName().equals(stream)){
                 return false;
             }
@@ -35,7 +63,7 @@ public class ListOfSpartanDTO implements IResponse {
      * @return if all spartans in list have course
      */
     public boolean isSpartanInCourse(String course){
-        for (SpartanDTO spartanDTO: spartans){
+        for (SpartanDTO spartanDTO: results){
             if (!spartanDTO.getCourse().getName().equals(course)){
                 return false;
             }
@@ -49,7 +77,7 @@ public class ListOfSpartanDTO implements IResponse {
      * @return a list of matching spartans
      */
     public List<SpartanDTO> getSpartansByStartDate(LocalDate date) {
-        return spartans.stream()
+        return results.stream()
                 .filter(s -> s.isStartDateEqual(date))
                 .collect(Collectors.toList());
     }
@@ -61,7 +89,7 @@ public class ListOfSpartanDTO implements IResponse {
      * @return a list of matching spartans
      */
     public List<SpartanDTO> getSpartansByStartDateInRange(LocalDate dateMin, LocalDate dateMax) {
-        return spartans.stream()
+        return results.stream()
                 .filter(s -> s.isStartDateWithinRange(dateMin, dateMax))
                 .collect(Collectors.toList());
     }
@@ -72,7 +100,7 @@ public class ListOfSpartanDTO implements IResponse {
      * @return a list of matching spartans
      */
     public List<SpartanDTO> getSpartansByEndDate(LocalDate date) {
-        return spartans.stream()
+        return results.stream()
                 .filter(s -> s.isEndDateEqual(date))
                 .collect(Collectors.toList());
     }
@@ -84,8 +112,10 @@ public class ListOfSpartanDTO implements IResponse {
      * @return a list of matching spartans
      */
     public List<SpartanDTO> getSpartansByEndDateInRange(LocalDate dateMin, LocalDate dateMax) {
-        return spartans.stream()
+        return results.stream()
                 .filter(s -> s.isEndDateWithinRange(dateMin, dateMax))
                 .collect(Collectors.toList());
     }
+
+
 }
