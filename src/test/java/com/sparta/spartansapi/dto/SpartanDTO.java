@@ -281,7 +281,6 @@ public class SpartanDTO implements IResponse{
 
 
     public boolean isEmailValidFormat(){
-        System.out.println(getFirstInital()+getLastName()+"@spartaglobal.com");
         return getEmail().equals(getFirstInital()+getLastName()+"@spartaglobal.com");
     }
 
