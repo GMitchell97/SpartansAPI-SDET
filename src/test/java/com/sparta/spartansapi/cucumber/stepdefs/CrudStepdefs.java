@@ -104,7 +104,9 @@ public class CrudStepdefs {
 
     @Then("the spartan should be updated")
     public void theSpartanShouldBeUpdated() throws IOException, InterruptedException {
-        Assertions.assertEquals("Engineering 96", ((SpartanDTO) iResponse).getCourse());
+        callManager = new CallManager(ConnectionManager.getSpartans().getById(id));
+        iResponse = Injector.injectDTO(callManager);
+        Assertions.assertEquals("Engineering 96", ((ListOfSpartanDTO) iResponse).getSpartans().get(0).getCourse().getName());
     }
 
 
