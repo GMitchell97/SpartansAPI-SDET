@@ -22,11 +22,11 @@ Feature: Filter Spartan by course name
       | Engineering%2095 | 200 |
       | Business%2067   | 200  |
       | Engineering%2096 | 200 |
-      | ENGINEERING%2095 | 204 |
-      | engineering%2096 | 204 |
-      | BUSINESS%2067 | 204    |
-      | engineering | 204    |
-      | Maths       | 204    |
+      | ENGINEERING%2095 | 200 |
+      | engineering%2096 | 200 |
+      | BUSINESS%2067 | 200    |
+      | engineering | 200    |
+      | Maths       | 200    |
 
   @Happy @Error
   Scenario Outline: Querying a Spartan with an valid course name

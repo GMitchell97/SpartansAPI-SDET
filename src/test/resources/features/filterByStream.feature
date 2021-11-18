@@ -22,9 +22,9 @@ Feature: Filter Spartan by stream name
       | Java%20Dev | 200    |
       | C#%20Dev   | 200    |
       | Java%20SDET | 200   |
-      | java      | 204   |
-      | JAVA      | 204   |
-      | Ruby      | 204   |
+      | java      | 200   |
+      | JAVA      | 200   |
+      | Ruby      | 200   |
 
   @Sad @Error
   Scenario Outline: Querying a Spartan with an invalid stream name

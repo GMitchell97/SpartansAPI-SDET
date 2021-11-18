@@ -4,7 +4,7 @@ Feature:  Filter Spartan By Spartan Name
   @Happy @Status
   Scenario: Search request with a non-existing name
     When I make a valid request by a non-existing name
-    Then I get back a 204 response code
+    Then I get back a 200 response code
 
   @Happy @Error
   Scenario: Search request with a non-existing name body checker
@@ -14,7 +14,7 @@ Feature:  Filter Spartan By Spartan Name
   @Happy @Status
   Scenario: Search request with an empty name
     When I make valid request by an empty name
-    Then I get back a 204 response code
+    Then I get back a 200 response code
 
   @Happy @Error
   Scenario: Search request with an empty name body checker
@@ -73,11 +73,11 @@ Feature:  Filter Spartan By Spartan Name
     Then I get back a <Response> response code
     Examples:
       | Name                | Response |
-      | LUIGI VINCENZO PUMA | 204      |
-      | luigi vincenzo puma | 204      |
+      | LUIGI VINCENZO PUMA | 200      |
+      | luigi vincenzo puma | 200      |
       | Luigi Vincenzo Puma | 200      |
       | ui in um            | 200      |
-      | zzzzzzzzz zz zz     | 204      |
+      | zzzzzzzzz zz zz     | 200      |
 
   @FirstName @Happy @Status
   Scenario Outline: Search request with first name returns correct status code
@@ -85,11 +85,11 @@ Feature:  Filter Spartan By Spartan Name
     Then I get back a <Response> response code
     Examples:
       | Name      | Response |
-      | LUIGI     | 204      |
-      | luigi     | 204      |
+      | LUIGI     | 200      |
+      | luigi     | 200      |
       | Luigi     | 200      |
       | ui        | 200      |
-      | zzzzzzzzz | 204      |
+      | zzzzzzzzz | 200      |
 
   @FirstAndLastName @Happy @Status
   Scenario Outline: Search request with first and last name returns correct status code
@@ -97,10 +97,10 @@ Feature:  Filter Spartan By Spartan Name
     Then I get back a <Response> response code
     Examples:
       | Name       | Response |
-      | LUIGI PUMA | 204      |
-      | luigi puma | 204      |
+      | LUIGI PUMA | 200      |
+      | luigi puma | 200      |
       | Luigi Puma | 200      |
       | ui am      | 200      |
-      | zzzzz zzz  | 204      |
+      | zzzzz zzz  | 200      |
 
 
