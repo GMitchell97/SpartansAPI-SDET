@@ -34,10 +34,6 @@ public class SpartanStepdefs {
         Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInCourse(course));
     }
 
-    @Then("I get back an empty list")
-    public void iGetBackAnEmptyList() {
-    }
-
     @When("I make a valid request by id {string}")
     public void iMakeAValidRequestById(String arg0) throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getById(arg0));
