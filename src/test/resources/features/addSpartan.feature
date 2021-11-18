@@ -14,7 +14,7 @@ Feature: Add a Spartan to the database
   @Happy @Confirm
   Scenario: Add a new entry in spartan collection with all valid fields
     When I make a request to add a spartan with correct fields
-    Then I get back an message "Record added"
+    Then I get back a message "Record added"
 
   @Sad @Status
   Scenario: Trying to add a Spartan with an invalid field values, status code 400 received

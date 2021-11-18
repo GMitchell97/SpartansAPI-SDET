@@ -31,7 +31,7 @@ Feature: Filter Spartan by course name
   @Happy @Error
   Scenario Outline: Querying a Spartan with an valid course name
     When I make a valid request by course name "<course>"
-    Then I get back an error message "No records found"
+    Then I get back a message "No records found"
 
     Examples:
       | course |
@@ -45,7 +45,7 @@ Feature: Filter Spartan by course name
     @Sad @Error
       Scenario Outline: Querying a response with an invalid course name
         When I make a valid request by course name "<course>"
-        Then I get back an error message "No records found"
+        Then I get back a message "No records found"
 
       Examples:
         | course |

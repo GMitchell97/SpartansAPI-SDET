@@ -19,8 +19,8 @@ public class UtilStepdefs {
         Assertions.assertEquals(message, ((ErrorDTO) iResponse).getMessage());
     }
 
-    @Then("I get back an message {string}")
-    public void iGetBackAnMessage(String message) {
+    @Then("I get back a message {string}")
+    public void iGetBackAMessage(String message) {
         Assertions.assertEquals(message, ((ListDTO) iResponse).getMessage());
     }
 
