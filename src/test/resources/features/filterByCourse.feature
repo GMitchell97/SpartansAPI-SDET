@@ -31,7 +31,7 @@ Feature: Filter Spartan by course name
   @Happy @Error
   Scenario Outline: Querying a Spartan with an valid course name
     When I make a valid request by course name "<course>"
-    Then I get back an error message "No record found"
+    Then I get back an error message "No records found"
 
     Examples:
       | course |
@@ -45,12 +45,12 @@ Feature: Filter Spartan by course name
     @Sad @Error
       Scenario Outline: Querying a response with an invalid course name
         When I make a valid request by course name "<course>"
-        Then I get back an error message "Field format invalid"
+        Then I get back an error message "No records found"
 
       Examples:
         | course |
         | 345678;  |
-        | asd dsa  |
+        | asd%20dsa  |
 
   @Sad @Status
   Scenario Outline: Querying a response with an invalid course name
@@ -59,7 +59,7 @@ Feature: Filter Spartan by course name
 
     Examples:
       | course | response |
-      | 345678;  | 400    |
-      | asd dsa  | 400    |
+      | 345678;  | 200    |
+      | asd%20dsa  | 200    |
 
 
