@@ -95,10 +95,6 @@ public class SpartanStepdefs {
     }
 
 
-    @Then("The email should end with @spartaglobal.com")
-    public void theEmailShouldEndWithSpartaglobalCom() {
-        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
-    }
 
     @When("I search for Spartans who start their contract on a specified full date")
     public void iSearchForSpartansWhoStartTheirContractOnASpecifiedFullDate() throws IOException, InterruptedException {
@@ -169,5 +165,10 @@ public class SpartanStepdefs {
         // TODO: implemented other paramaters for invalid end date (format, before sparta founding, before the start date, etc.)
         callManager = new CallManager(ConnectionManager.getSpartans().getByEndDate("invalid-start-date"));
         iResponse = Injector.injectDTO(callManager);
+    }
+
+    @Then("The email should have the correct name end with @spartaglobal.com")
+    public void theEmailShouldHaveTheCorrectNameEndWithSpartaglobalCom() {
+        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
     }
 }
