@@ -17,7 +17,7 @@ Feature: Update a spartan by Id
   @Happy @Confirm
   Scenario: If there is an id in the system I want to get back a message that the spartan has been updated
     When I make a valid PUT request to an existing Id
-    Then I get back an error message "Record updated"
+    Then I get back an message "Record updated"
 
   @Sad @Status
   Scenario:  If there isn't an id in the system I want to get back a 200 response code

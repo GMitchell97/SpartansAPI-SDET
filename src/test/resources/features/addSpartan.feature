@@ -1,17 +1,17 @@
 @SmokeTests @Add @WIP
 Feature: Add a Spartan to the database
 
+  @Happy
+  Scenario: Add a new entry in spartan collection with all valid fields
+    When I make a request to add a spartan with correct fields
+    Then I get back the new spartan
+
   @Happy @Status
   Scenario: Add a new entry in spartan collection with all valid fields, status code 201 received
     When I make a request to add a spartan with correct fields
     Then I get back a 201 response code
 
   @Happy @Confirm
-  Scenario: Add a new entry in spartan collection with all valid fields
-    When I make a request to add a spartan with correct fields
-    Then I get back the new spartan
-
-  @Happy @Message
   Scenario: Add a new entry in spartan collection with all valid fields
     When I make a request to add a spartan with correct fields
     Then I get back an message "Record added"
