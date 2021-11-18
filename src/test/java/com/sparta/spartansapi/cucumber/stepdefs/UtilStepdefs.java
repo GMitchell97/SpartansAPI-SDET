@@ -32,4 +32,9 @@ public class UtilStepdefs {
     public void iGetBackAResponseCode(int code) {
         Assertions.assertEquals(code, callManager.getStatusCode());
     }
+
+    @Then("I get back a response message {string}")
+    public void iGetBackAResponseMessage(String msg) {
+        Assertions.assertEquals(msg, ((ListDTO) iResponse).getMessage());
+    }
 }
