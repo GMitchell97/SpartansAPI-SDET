@@ -89,11 +89,6 @@ public class SpartanStepdefs {
         Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInStream(stream));
     }
 
-    @Then("I get back a JSON response containing all Spartans with that name")
-    public void iGetBackAJSONResponseContainingAllSpartansWithThatName() {
-        Assertions.assertEquals(200, callManager.getStatusCode());
-    }
-
     @When("I make a valid request by first and last name {string}")
     public void iMakeAValidRequestByFirstAndLastName(String arg0) throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
@@ -105,10 +100,6 @@ public class SpartanStepdefs {
         Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanNameInResponse(arg0));
     }
 
-    @Then("The email should end with @spartaglobal.com")
-    public void theEmailShouldEndWithSpartaglobalCom() {
-        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getResults().get(0).isEmailValidFormat());
-    }
 
     @When("I search for Spartans who start their contract on a specified full date")
     public void iSearchForSpartansWhoStartTheirContractOnASpecifiedFullDate() throws IOException, InterruptedException {
@@ -180,7 +171,11 @@ public class SpartanStepdefs {
         callManager = new CallManager(ConnectionManager.getSpartans().getByEndDate("invalid-start-date"));
         iResponse = Injector.injectDTO(callManager);
     }
-
+  
+    @Then("The email should have the correct name end with @spartaglobal.com")
+    public void theEmailShouldHaveTheCorrectNameEndWithSpartaglobalCom() {
+        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
+    }
 
     @When("I check a spartans id")
     public void iCheckASpartansId() {
@@ -271,4 +266,5 @@ public class SpartanStepdefs {
     public void emailIsNotNull() {
         Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isEmailNull());
     }
+
 }
