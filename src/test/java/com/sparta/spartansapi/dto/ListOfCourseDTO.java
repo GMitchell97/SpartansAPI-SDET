@@ -14,27 +14,10 @@ import java.util.List;
         "status_code"
 })
 
-public class ListOfCourseDTO implements IResponse {
+public class ListOfCourseDTO extends ListDTO implements IResponse {
     @JsonProperty("results")
     private List<CourseDTO> results;
-    @JsonProperty("message")
-    private String message;
-    @JsonProperty("count")
-    private int count;
-    @JsonProperty("status_code")
-    private int statusCode;
 
     public List<CourseDTO> getCourses() {return results;}
 
-    public String getMessage() {
-        return message;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
 }

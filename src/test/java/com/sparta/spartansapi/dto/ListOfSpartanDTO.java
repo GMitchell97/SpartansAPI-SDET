@@ -17,27 +17,9 @@ import java.util.stream.Collectors;
         "status_code"
 })
 
-public class ListOfSpartanDTO implements IResponse {
+public class ListOfSpartanDTO extends ListDTO implements IResponse {
     @JsonProperty("results")
     private List<SpartanDTO> results;
-    @JsonProperty("message")
-    private String message;
-    @JsonProperty("count")
-    private int count;
-    @JsonProperty("status_code")
-    private int statusCode;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
 
     public List<SpartanDTO> getSpartans() {
         return results;
