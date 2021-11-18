@@ -42,27 +42,38 @@ public class SpartanStepdefs {
     }
 
     @When("I make a valid request by a non-existing name")
-    public void iMakeAValidRequestByANonExistingName() {
+    public void iMakeAValidRequestByANonExistingName() throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName("Gustavo"));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @When("I make valid request by an empty name")
-    public void iMakeValidRequestByAnEmptyName() {
+    public void iMakeValidRequestByAnEmptyName() throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(""));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @When("I make a valid request by full name {string}")
-    public void iMakeAValidRequestByFullName(String arg0) {
+    public void iMakeAValidRequestByFullName(String arg0) throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
+        iResponse = Injector.injectDTO(callManager);
     }
 
+    //test should fail.
     @Then("I get back a Json array of Spartans that contain the full name {string}")
     public void iGetBackAJsonArrayOfSpartansThatContainTheFullName(String arg0) {
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanNameInResponse(arg0));
     }
 
     @When("I make a valid request by first name {string}")
-    public void iMakeAValidRequestByFirstName(String arg0) {
+    public void iMakeAValidRequestByFirstName(String arg0) throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("I get back a Json array of Spartans that contain the first name {string}")
-    public void iGetBackAJsonArrayOfSpartansThatContainTheFirstName(String arg0) {
+    public void iGetBackAJsonArrayOfSpartansThatContainTheFirstName(String arg0){
+        Assertions.assertEquals(arg0, ((SpartanDTO)iResponse).getFirstName());
     }
 
 
@@ -79,17 +90,19 @@ public class SpartanStepdefs {
 
     @Then("I get back a JSON response containing all Spartans with that name")
     public void iGetBackAJSONResponseContainingAllSpartansWithThatName() {
-        Assertions.assertEquals(204, callManager.getStatusCode()); // this is to do with the json not the status code needs changed
+        Assertions.assertEquals(200, callManager.getStatusCode());
     }
 
     @When("I make a valid request by first and last name {string}")
-    public void iMakeAValidRequestByFirstAndLastName(String arg0) {
+    public void iMakeAValidRequestByFirstAndLastName(String arg0) throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("I get back a Json array of Spartans that contain the first and last name {string}")
     public void iGetBackAJsonArrayOfSpartansThatContainTheFirstAndLastName(String arg0) {
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanNameInResponse(arg0));
     }
-
 
     @Then("The email should end with @spartaglobal.com")
     public void theEmailShouldEndWithSpartaglobalCom() {
