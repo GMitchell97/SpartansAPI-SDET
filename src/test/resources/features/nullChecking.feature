@@ -24,10 +24,6 @@ Feature: Checking SpartanDTO for null fields
       When I check a spartans course
       Then course is not null
 
-    Scenario: Checking course id is not null
-      When I check a spartans course id
-      Then course id is not null
-
     Scenario: Checking course name is not null
       When I check a spartans course name
       Then course name is not null

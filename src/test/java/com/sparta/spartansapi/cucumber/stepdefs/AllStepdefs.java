@@ -19,7 +19,7 @@ public class AllStepdefs {
     @When("I make a GET request to get all spartans")
     public void iMakeAGETRequestTo() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAll());
-        //iResponse = Injector.injectDTO(callManager);
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("receive a list of all spartans in a json format")
