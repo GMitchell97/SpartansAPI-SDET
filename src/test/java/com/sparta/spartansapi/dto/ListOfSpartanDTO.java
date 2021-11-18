@@ -72,7 +72,7 @@ public class ListOfSpartanDTO implements IResponse {
     }
 
     public boolean doesSpartanExist(String name){
-        for(SpartanDTO spartanDTO: spartans){
+        for(SpartanDTO spartanDTO: results){
             if(!spartanDTO.getFirstName().equals(name)){
                 return false;
             }
@@ -82,7 +82,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public String spartanNameConverter (String name) {
         String nname = "";
-        for (SpartanDTO spartanDTO : spartans) {
+        for (SpartanDTO spartanDTO : results) {
             if (spartanDTO.getMiddleName().isEmpty()) {
                 nname = spartanDTO.getFirstName()+"%20"+spartanDTO.getLastName();
             } else {
@@ -93,7 +93,7 @@ public class ListOfSpartanDTO implements IResponse {
     }
 
     public boolean isSpartanNameInResponse(String name) {
-        for (SpartanDTO spartanDTO : spartans) {
+        for (SpartanDTO spartanDTO : results) {
             String nname = spartanNameConverter(name);
             if (!name.equals(nname)) return false;
         }
