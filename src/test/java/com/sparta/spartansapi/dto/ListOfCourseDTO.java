@@ -24,7 +24,7 @@ public class ListOfCourseDTO implements IResponse {
     @JsonProperty("status_code")
     private int statusCode;
 
-    public List<CourseDTO> getResults() {return results;}
+    public List<CourseDTO> getCourses() {return results;}
 
     public String getMessage() {
         return message;
