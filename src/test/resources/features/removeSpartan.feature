@@ -1,6 +1,7 @@
 @SmokeTests @WIP @Remove
 Feature: Remove a Spartan by Id
-  Given I have a valid spartan ID
+  Background:
+    Given I have a valid spartan ID
   @Happy @Status
   Scenario: Trying to remove a Spartan with a valid Id, status code 200 received
     When I make a request to remove a spartan with valid ID

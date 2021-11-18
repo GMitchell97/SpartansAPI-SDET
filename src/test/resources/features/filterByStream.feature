@@ -29,7 +29,7 @@ Feature: Filter Spartan by stream name
   @Sad @Error
   Scenario Outline: Querying a Spartan with an invalid stream name
     When I make a valid request by stream name "<stream>"
-    Then I get back an error message "No records found"
+    Then I get back a message "Field format invalid"
 
     Examples:
       | stream |
