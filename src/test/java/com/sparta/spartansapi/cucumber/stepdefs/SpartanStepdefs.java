@@ -1,20 +1,17 @@
 package com.sparta.spartansapi.cucumber.stepdefs;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.connection.ConnectionManager;
-import com.sparta.spartansapi.dto.ErrorDTO;
+import com.sparta.spartansapi.dto.IResponse;
 import com.sparta.spartansapi.dto.ListOfSpartanDTO;
 import com.sparta.spartansapi.dto.SpartanDTO;
 import com.sparta.spartansapi.injector.Injector;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,27 +43,38 @@ public class SpartanStepdefs {
     }
 
     @When("I make a valid request by a non-existing name")
-    public void iMakeAValidRequestByANonExistingName() {
+    public void iMakeAValidRequestByANonExistingName() throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName("Gustavo"));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @When("I make valid request by an empty name")
-    public void iMakeValidRequestByAnEmptyName() {
+    public void iMakeValidRequestByAnEmptyName() throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(""));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @When("I make a valid request by full name {string}")
-    public void iMakeAValidRequestByFullName(String arg0) {
+    public void iMakeAValidRequestByFullName(String arg0) throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
+        iResponse = Injector.injectDTO(callManager);
     }
 
+    //test should fail.
     @Then("I get back a Json array of Spartans that contain the full name {string}")
     public void iGetBackAJsonArrayOfSpartansThatContainTheFullName(String arg0) {
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanNameInResponse(arg0));
     }
 
     @When("I make a valid request by first name {string}")
-    public void iMakeAValidRequestByFirstName(String arg0) {
+    public void iMakeAValidRequestByFirstName(String arg0) throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("I get back a Json array of Spartans that contain the first name {string}")
-    public void iGetBackAJsonArrayOfSpartansThatContainTheFirstName(String arg0) {
+    public void iGetBackAJsonArrayOfSpartansThatContainTheFirstName(String arg0){
+        Assertions.assertEquals(arg0, ((SpartanDTO)iResponse).getFirstName());
     }
 
 
@@ -81,24 +89,17 @@ public class SpartanStepdefs {
         Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInStream(stream));
     }
 
-    @Then("I get back a JSON response containing all Spartans with that name")
-    public void iGetBackAJSONResponseContainingAllSpartansWithThatName() {
-        Assertions.assertEquals(204, callManager.getStatusCode()); // this is to do with the json not the status code needs changed
-    }
-
     @When("I make a valid request by first and last name {string}")
-    public void iMakeAValidRequestByFirstAndLastName(String arg0) {
+    public void iMakeAValidRequestByFirstAndLastName(String arg0) throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
+        iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("I get back a Json array of Spartans that contain the first and last name {string}")
     public void iGetBackAJsonArrayOfSpartansThatContainTheFirstAndLastName(String arg0) {
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanNameInResponse(arg0));
     }
 
-
-    @Then("The email should end with @spartaglobal.com")
-    public void theEmailShouldEndWithSpartaglobalCom() {
-        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
-    }
 
     @When("I search for Spartans who start their contract on a specified full date")
     public void iSearchForSpartansWhoStartTheirContractOnASpecifiedFullDate() throws IOException, InterruptedException {
@@ -112,7 +113,7 @@ public class SpartanStepdefs {
         LocalDate date = LocalDate.parse("2022-09-04"); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByStartDate(date);
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
     }
 
     @When("I search for Spartans who start their contract who start their contract within a specified date range")
@@ -126,7 +127,7 @@ public class SpartanStepdefs {
         List<LocalDate> range = Arrays.asList(LocalDate.parse("2022-09-03"), LocalDate.parse("2022-09-05")); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByStartDateInRange(range.get(0), range.get(1));
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
     }
 
     @When("I search for Spartans who start their contract on an invalid full date")
@@ -147,7 +148,7 @@ public class SpartanStepdefs {
         LocalDate date = LocalDate.parse("2022-09-04"); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByEndDate(date);
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
     }
 
     @When("I search for Spartans who end their contract who end their contract within a specified date range")
@@ -161,7 +162,7 @@ public class SpartanStepdefs {
         List<LocalDate> range = Arrays.asList(LocalDate.parse("2022-10-22"), LocalDate.parse("2022-10-24")); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByEndDateInRange(range.get(0), range.get(1));
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
     }
 
     @When("I search for Spartans who end their contract on an invalid full date")
@@ -170,4 +171,100 @@ public class SpartanStepdefs {
         callManager = new CallManager(ConnectionManager.getSpartans().getByEndDate("invalid-start-date"));
         iResponse = Injector.injectDTO(callManager);
     }
+  
+    @Then("The email should have the correct name end with @spartaglobal.com")
+    public void theEmailShouldHaveTheCorrectNameEndWithSpartaglobalCom() {
+        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
+    }
+
+    @When("I check a spartans id")
+    public void iCheckASpartansId() {
+    }
+
+    @Then("id is not null")
+    public void idIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isIdNull());
+    }
+
+    @When("I check a spartans firstName")
+    public void iCheckASpartansFirstName() {
+    }
+
+    @Then("firstName is not null")
+    public void firstnameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isFirstNameNull());
+    }
+
+    @When("I check a spartans lastName")
+    public void iCheckASpartansLastName() {
+    }
+
+    @Then("lastName is not null")
+    public void lastnameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isLastNameNull());
+    }
+
+    @When("I check a spartans startDate")
+    public void iCheckASpartansStartDate() {
+    }
+
+    @Then("startDate is not null")
+    public void startdateIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStartDateNull());
+    }
+
+    @When("I check a spartans course")
+    public void iCheckASpartansCourse() {
+    }
+
+    @Then("course is not null")
+    public void courseIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isCourseNull());
+    }
+
+    @When("I check a spartans course name")
+    public void iCheckASpartansCourseName() {
+    }
+
+    @Then("course name is not null")
+    public void courseNameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isCourseNameNull());
+    }
+
+    @When("I check a spartans stream")
+    public void iCheckASpartansStream() {
+    }
+
+    @Then("stream is not null")
+    public void streamIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStreamNull());
+    }
+
+    @When("I check a spartans stream duration")
+    public void iCheckASpartansStreamDuration() {
+    }
+
+    @Then("stream duration is not null")
+    public void streamDurationIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStreamDurationNull());
+    }
+
+    @When("I check a spartans stream name")
+    public void iCheckASpartansStreamName() {
+    }
+
+    @Then("stream name is not null")
+    public void streamNameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStreamNameNull());
+    }
+
+    @When("I check a spartans email")
+    public void iCheckASpartansEmail() {
+    }
+
+    @Then("email is not null")
+    public void emailIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isEmailNull());
+    }
+
 }
