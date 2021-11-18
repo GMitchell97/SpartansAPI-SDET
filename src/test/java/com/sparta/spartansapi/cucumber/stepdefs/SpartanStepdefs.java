@@ -116,9 +116,9 @@ public class SpartanStepdefs {
         Assertions.assertEquals(expected.toString(), ((ListOfSpartanDTO) iResponse).getSpartans().toString()); // response contains actual value
     }
 
-    @When("I search for Spartans who start their contract who start their contract within a specified date range")
-    public void iSearchForSpartansWhoStartTheirContractWhoStartTheirContractWithinASpecifiedDateRange() throws IOException, InterruptedException {
-        callManager = new CallManager(ConnectionManager.getSpartans().getByStartDateInRange("2022-09-03", "2022-09-05")); // TODO: implement parameterised tests
+    @When("I search for Spartans who start their contract within a specified date range")
+    public void iSearchForSpartansWhoStartTheirContractWithinASpecifiedDateRange() throws IOException, InterruptedException {
+        callManager = new CallManager(ConnectionManager.getSpartans().getByStartDateInRange("2022-09-03", "2022-09-06")); // TODO: implement parameterised tests
         iResponse = Injector.injectDTO(callManager);
     }
 
@@ -127,6 +127,9 @@ public class SpartanStepdefs {
         List<LocalDate> range = Arrays.asList(LocalDate.parse("2022-09-03"), LocalDate.parse("2022-09-05")); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByStartDateInRange(range.get(0), range.get(1));
+        List<SpartanDTO> actual = ((ListOfSpartanDTO) iResponse).getSpartans();
+        System.out.println(actual.size());
+        System.out.println(actual);
         Assertions.assertEquals(expected.toString(), ((ListOfSpartanDTO) iResponse).getSpartans().toString()); // response contains actual value
     }
 
