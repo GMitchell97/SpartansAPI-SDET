@@ -39,7 +39,7 @@ public class ListOfSpartanDTO implements IResponse {
         return statusCode;
     }
 
-    public List<SpartanDTO> getResults() {
+    public List<SpartanDTO> getSpartans() {
         return results;
     }
 

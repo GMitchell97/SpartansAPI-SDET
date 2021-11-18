@@ -2,7 +2,6 @@ package com.sparta.spartansapi.cucumber.stepdefs;
 
 import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.connection.ConnectionManager;
-import com.sparta.spartansapi.dto.IResponse;
 import com.sparta.spartansapi.dto.ListOfSpartanDTO;
 import com.sparta.spartansapi.dto.SpartanDTO;
 import com.sparta.spartansapi.injector.Injector;
@@ -113,7 +112,7 @@ public class SpartanStepdefs {
         LocalDate date = LocalDate.parse("2022-09-04"); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByStartDate(date);
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
     }
 
     @When("I search for Spartans who start their contract who start their contract within a specified date range")
@@ -127,7 +126,7 @@ public class SpartanStepdefs {
         List<LocalDate> range = Arrays.asList(LocalDate.parse("2022-09-03"), LocalDate.parse("2022-09-05")); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByStartDateInRange(range.get(0), range.get(1));
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
     }
 
     @When("I search for Spartans who start their contract on an invalid full date")
@@ -148,7 +147,7 @@ public class SpartanStepdefs {
         LocalDate date = LocalDate.parse("2022-09-04"); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByEndDate(date);
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
     }
 
     @When("I search for Spartans who end their contract who end their contract within a specified date range")
@@ -162,7 +161,7 @@ public class SpartanStepdefs {
         List<LocalDate> range = Arrays.asList(LocalDate.parse("2022-10-22"), LocalDate.parse("2022-10-24")); // TODO: implement parameterised tests
         CallManager m = new CallManager(ConnectionManager.getSpartans().getAll()); // get all spartans
         List<SpartanDTO> expected = ((ListOfSpartanDTO) Injector.injectDTO(m)).getSpartansByEndDateInRange(range.get(0), range.get(1));
-        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getResults()); // response contains actual value
+        Assertions.assertEquals(expected, ((ListOfSpartanDTO) iResponse).getSpartans()); // response contains actual value
     }
 
     @When("I search for Spartans who end their contract on an invalid full date")
