@@ -127,5 +127,9 @@ public class SpartanStepdefs {
     public void iGetBackAJsonArrayOfSpartansThatContainTheFirstAndLastName(String arg0) {
     }
 
+    @Then("The email should end with @spartaglobal.com")
+    public void theEmailShouldEndWithSpartaglobalCom() {
+        Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
+    }
 
 }
