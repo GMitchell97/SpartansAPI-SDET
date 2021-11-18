@@ -166,4 +166,52 @@ public class SpartanStepdefs {
         callManager = new CallManager(ConnectionManager.getSpartans().getByEndDate("invalid-start-date"));
         iResponse = Injector.injectDTO(callManager);
     }
+
+    @When("I check a spartans id")
+    public void iCheckASpartansId() {
+    }
+
+    @Then("It is not null")
+    public void itIsNotNull() {
+    }
+
+    @When("I check a spartans firstName")
+    public void iCheckASpartansFirstName() {
+    }
+
+    @When("I check a spartans lastName")
+    public void iCheckASpartansLastName() {
+    }
+
+    @When("I check a spartans startDate")
+    public void iCheckASpartansStartDate() {
+    }
+
+    @When("I check a spartans course")
+    public void iCheckASpartansCourse() {
+    }
+
+    @When("I check a spartans course id")
+    public void iCheckASpartansCourseId() {
+    }
+
+    @When("I check a spartans course name")
+    public void iCheckASpartansCourseName() {
+    }
+
+    @When("I check a spartans stream")
+    public void iCheckASpartansStream() {
+    }
+
+    @When("I check a spartans stream duration")
+    public void iCheckASpartansStreamDuration() {
+    }
+
+    @When("I check a spartans stream name")
+    public void iCheckASpartansStreamName() {
+    }
+
+    @When("I check a spartans email")
+    public void iCheckASpartansEmail() {
+    }
 }

@@ -117,5 +117,94 @@ public class ListOfSpartanDTO implements IResponse {
                 .collect(Collectors.toList());
     }
 
+    public boolean isIdNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getId() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isFirstNameNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getFirstName() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isLastNameNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getLastName() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isStartDateNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getLastName() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCourseNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getCourse() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCourseNameNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getCourse().getName() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isStreamNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getStream() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isStreamNameNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getStream().getName() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isStreamDurationNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getStream().getDuration() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isEmailNull(){
+        for (SpartanDTO spartanDTO: results){
+            if (spartanDTO.getEmail() != null){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
