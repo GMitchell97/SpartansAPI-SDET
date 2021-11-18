@@ -24,7 +24,7 @@ public class ListOfStreamDTO implements IResponse {
     @JsonProperty("status_code")
     private int statusCode;
 
-    public List<StreamDTO> getResults() {
+    public List<StreamDTO> getStreams() {
         return results;
     }
 
