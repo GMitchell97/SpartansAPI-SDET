@@ -16,12 +16,12 @@ Feature: Filter by start date
 
   @Happy @View
   Scenario: Querying Spartans who start their contract within a specific date range
-    When I search for Spartans who start their contract who start their contract within a specified date range
+    When I search for Spartans who start their contract within a specified date range
     Then I get a list of Spartans who start their contract within the specified date range
 
   @Happy @Status
   Scenario: Querying a response code for Spartans who start their contract within a specific date range
-    When I search for Spartans who start their contract who start their contract within a specified date range
+    When I search for Spartans who start their contract within a specified date range
     Then I get back a 200 response code
 
   @Sad @Status
