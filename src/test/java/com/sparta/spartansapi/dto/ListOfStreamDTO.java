@@ -14,29 +14,12 @@ import java.util.List;
         "status_code"
 })
 
-public class ListOfStreamDTO implements IResponse {
+public class ListOfStreamDTO extends ListDTO implements IResponse {
     @JsonProperty("results")
     private List<StreamDTO> results;
-    @JsonProperty("message")
-    private String message;
-    @JsonProperty("count")
-    private int count;
-    @JsonProperty("status_code")
-    private int statusCode;
 
     public List<StreamDTO> getStreams() {
         return results;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
 }
