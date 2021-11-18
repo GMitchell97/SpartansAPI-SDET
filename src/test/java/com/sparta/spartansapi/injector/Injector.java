@@ -3,6 +3,7 @@ package com.sparta.spartansapi.injector;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.google.gson.JsonObject;
 import com.sparta.spartansapi.connection.CallManager;
@@ -31,9 +32,9 @@ public class Injector {
     }
 
     private static IResponse getListOfDTO(JsonNode jsonNode) throws JsonProcessingException {
-        if (jsonNode.get("results").has("email")) {
+        if (((ArrayNode) jsonNode.get("results")).get(0).has("email")) {
             return objectMapper.treeToValue(jsonNode, ListOfSpartanDTO.class);
-        } else if (jsonNode.get("results").has("duration")) {
+        } else if (((ArrayNode) jsonNode.get("results")).get(0).has("duration")) {
             return objectMapper.treeToValue(jsonNode, ListOfStreamDTO.class);
         } else {
             return objectMapper.treeToValue(jsonNode, ListOfCourseDTO.class);

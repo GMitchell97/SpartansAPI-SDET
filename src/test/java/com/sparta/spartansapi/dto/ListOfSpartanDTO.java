@@ -148,7 +148,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isIdNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getId() != null){
+            if (spartanDTO.getId() == null){
                 return true;
             }
         }
@@ -157,7 +157,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isFirstNameNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getFirstName() != null){
+            if (spartanDTO.getFirstName() == null){
                 return true;
             }
         }
@@ -166,7 +166,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isLastNameNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getLastName() != null){
+            if (spartanDTO.getLastName() == null){
                 return true;
             }
         }
@@ -175,7 +175,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isStartDateNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getLastName() != null){
+            if (spartanDTO.getLastName() == null){
                 return true;
             }
         }
@@ -184,7 +184,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isCourseNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getCourse() != null){
+            if (spartanDTO.getCourse() == null){
                 return true;
             }
         }
@@ -193,7 +193,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isCourseNameNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getCourse().getName() != null){
+            if (spartanDTO.getCourse().getName() == null){
                 return true;
             }
         }
@@ -202,7 +202,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isStreamNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getStream() != null){
+            if (spartanDTO.getStream() == null){
                 return true;
             }
         }
@@ -211,7 +211,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isStreamNameNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getStream().getName() != null){
+            if (spartanDTO.getStream().getName() == null){
                 return true;
             }
         }
@@ -220,7 +220,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isStreamDurationNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getStream().getDuration() != null){
+            if (spartanDTO.getStream().getDuration() == null){
                 return true;
             }
         }
@@ -229,7 +229,7 @@ public class ListOfSpartanDTO implements IResponse {
 
     public boolean isEmailNull(){
         for (SpartanDTO spartanDTO: results){
-            if (spartanDTO.getEmail() != null){
+            if (spartanDTO.getEmail() == null){
                 return true;
             }
         }
