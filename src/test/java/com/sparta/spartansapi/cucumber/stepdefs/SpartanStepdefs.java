@@ -88,11 +88,6 @@ public class SpartanStepdefs {
         Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanInStream(stream));
     }
 
-    @Then("I get back a JSON response containing all Spartans with that name")
-    public void iGetBackAJSONResponseContainingAllSpartansWithThatName() {
-        Assertions.assertEquals(200, callManager.getStatusCode());
-    }
-
     @When("I make a valid request by first and last name {string}")
     public void iMakeAValidRequestByFirstAndLastName(String arg0) throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getByName(arg0));
