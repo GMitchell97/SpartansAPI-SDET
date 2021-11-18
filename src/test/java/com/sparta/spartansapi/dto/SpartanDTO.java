@@ -283,4 +283,19 @@ public class SpartanDTO implements IResponse{
     public boolean isEmailValidFormat(){
         return getEmail().equals(getFirstInital()+getLastName()+"@spartaglobal.com");
     }
+
+    @Override
+    public String toString() {
+        return "SpartanDTO{" +
+                "\n\tid='" + id + '\'' +
+                "\n\tfirstName='" + firstName + '\'' +
+                "\n\tmiddleName='" + middleName + '\'' +
+                "\n\tlastName='" + lastName + '\'' +
+                "\n\tstartDate='" + startDate + '\'' +
+                "\n\tendDate='" + endDate + '\'' +
+                "\n\tcourse=" + course +
+                "\n\tstream=" + stream +
+                "\n\temail='" + email + '\'' +
+                "\n}";
+    }
 }
