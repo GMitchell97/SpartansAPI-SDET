@@ -20,7 +20,7 @@ Feature: Update a spartan by Id
     Then I get back an error message "Record updated"
 
   @Sad @Status
-  Scenario:  If there isn't an id in the system I want to get back a 204 response code
+  Scenario:  If there isn't an id in the system I want to get back a 200 response code
     When I make a valid PUT request to a non-existing Id
     Then I get back a 200 response code
 
