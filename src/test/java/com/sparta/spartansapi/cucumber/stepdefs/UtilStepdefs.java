@@ -3,6 +3,7 @@ package com.sparta.spartansapi.cucumber.stepdefs;
 import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.dto.ErrorDTO;
 import com.sparta.spartansapi.dto.IResponse;
+import com.sparta.spartansapi.dto.ListDTO;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.jupiter.api.Assertions;

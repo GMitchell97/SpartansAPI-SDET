@@ -2,6 +2,7 @@ package com.sparta.spartansapi.cucumber.stepdefs;
 
 import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.connection.ConnectionManager;
+import com.sparta.spartansapi.dto.ListOfSpartanDTO;
 import com.sparta.spartansapi.dto.SpartanDTO;
 import com.sparta.spartansapi.injector.Injector;
 import io.cucumber.java.After;
@@ -24,35 +25,43 @@ public class CrudStepdefs {
     @Given("I have a valid spartan ID")
     public void iHaveAValidSpartanID() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAddSpartanUrl(), CallManager.Methods.POST,
-                "    {\n" +
-                        "        \"firstName\": \"FName\",\n" +
-                        "        \"middleName\": null,\n" +
-                        "        \"lastName\": \"LName\",\n" +
-                        "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
-                        "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 95\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
-                        "        \"email\": \"Name@spartaglobal.com\"\n" +
-                        "    }");
+                "{\n" +
+                        "    \"firstName\": \"FName\",\n" +
+                        "    \"middleName\": null,\n" +
+                        "    \"lastName\": \"LName\",\n" +
+                        "    \"startDate\": \"2021-09-04\",\n" +
+                        "    \"course\": {\n" +
+                        "        \"name\": \"Engineering 95\"\n" +
+                        "    },\n" +
+                        "    \"stream\": {\n" +
+                        "        \"name\": \"Java Dev\",\n" +
+                        "        \"duration\": 10\n" +
+                        "    },\n" +
+                        "    \"email\": \"Name@spartaglobal.com\"\n" +
+                        "}");
         iResponse = Injector.injectDTO(callManager);
-        id = ((SpartanDTO) iResponse).getId();
+        id = ((ListOfSpartanDTO) iResponse).getSpartans().get(0).getId();
     }
 
     @When("I make a request to add a spartan with correct fields")
     public void iMakeARequestToAddASpartanWithCorrectFields() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAddSpartanUrl(), CallManager.Methods.POST,
-                "    {\n" +
-                        "        \"firstName\": \"FName\",\n" +
-                        "        \"middleName\": null,\n" +
-                        "        \"lastName\": \"LName\",\n" +
-                        "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
-                        "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 95\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
-                        "        \"email\": \"Name@spartaglobal.com\"\n" +
-                        "    }");
+                "{\n" +
+                        "    \"firstName\": \"FName\",\n" +
+                        "    \"middleName\": null,\n" +
+                        "    \"lastName\": \"LName\",\n" +
+                        "    \"startDate\": \"2021-09-04\",\n" +
+                        "    \"course\": {\n" +
+                        "        \"name\": \"Engineering 95\"\n" +
+                        "    },\n" +
+                        "    \"stream\": {\n" +
+                        "        \"name\": \"Java Dev\",\n" +
+                        "        \"duration\": 10\n" +
+                        "    },\n" +
+                        "    \"email\": \"Name@spartaglobal.com\"\n" +
+                        "}");
         iResponse = Injector.injectDTO(callManager);
-        id = ((SpartanDTO) iResponse).getId();
+        id = ((ListOfSpartanDTO) iResponse).getSpartans().get(0).getId();
     }
 
     @When("I make a request to add a spartan with incorrect fields")
@@ -76,38 +85,48 @@ public class CrudStepdefs {
     @When("I make a valid PUT request to an existing Id")
     public void iMakeAValidPUTRequestToAnExistingId() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getUpdateSpartanUrl(id), CallManager.Methods.PATCH,
-                "    {\n" +
-                        "        \"firstName\": \"FName\",\n" +
-                        "        \"middleName\": null,\n" +
-                        "        \"lastName\": \"LName\",\n" +
-                        "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
-                        "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 96\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
-                        "        \"email\": \"Name@spartaglobal.com\"\n" +
-                        "    }");
+                "{\n" +
+                        "    \"firstName\": \"FName\",\n" +
+                        "    \"middleName\": null,\n" +
+                        "    \"lastName\": \"LName\",\n" +
+                        "    \"startDate\": \"2021-09-04\",\n" +
+                        "    \"course\": {\n" +
+                        "        \"name\": \"Engineering 96\"\n" +
+                        "    },\n" +
+                        "    \"stream\": {\n" +
+                        "        \"name\": \"Java Dev\",\n" +
+                        "        \"duration\": 10\n" +
+                        "    },\n" +
+                        "    \"email\": \"Name@spartaglobal.com\"\n" +
+                        "}");
         iResponse = Injector.injectDTO(callManager);
     }
 
     @Then("the spartan should be updated")
     public void theSpartanShouldBeUpdated() throws IOException, InterruptedException {
-        Assertions.assertEquals("Engineering 96", ((SpartanDTO) iResponse).getCourse());
+        callManager = new CallManager(ConnectionManager.getSpartans().getById(id));
+        iResponse = Injector.injectDTO(callManager);
+        Assertions.assertEquals("Engineering 96", ((ListOfSpartanDTO) iResponse).getSpartans().get(0).getCourse().getName());
     }
 
 
     @When("I make a valid PUT request to a non-existing Id")
     public void iMakeAValidPUTRequestToANonExistingId() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getUpdateSpartanUrl("invalid-id"), CallManager.Methods.PATCH,
-                "    {\n" +
-                        "        \"firstName\": \"FName\",\n" +
-                        "        \"middleName\": null,\n" +
-                        "        \"lastName\": \"LName\",\n" +
-                        "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
-                        "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 96\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
-                        "        \"email\": \"Name@spartaglobal.com\"\n" +
-                        "    }");
+                "{\n" +
+                        "    \"firstName\": \"FName\",\n" +
+                        "    \"middleName\": null,\n" +
+                        "    \"lastName\": \"LName\",\n" +
+                        "    \"startDate\": \"2021-09-04\",\n" +
+                        "    \"course\": {\n" +
+                        "        \"name\": \"Engineering 96\"\n" +
+                        "    },\n" +
+                        "    \"stream\": {\n" +
+                        "        \"name\": \"Java Dev\",\n" +
+                        "        \"duration\": 10\n" +
+                        "    },\n" +
+                        "    \"email\": \"Name@spartaglobal.com\"\n" +
+                        "}");
         iResponse = Injector.injectDTO(callManager);
     }
 
@@ -126,7 +145,7 @@ public class CrudStepdefs {
 
     @Then("I get back the new spartan")
     public void iGetBackTheNewSpartan() {
-        Assertions.assertEquals(id, ((SpartanDTO) iResponse).getId());
+        Assertions.assertEquals(id, ((ListOfSpartanDTO) iResponse).getSpartans().get(0).getId());
     }
 
     @After

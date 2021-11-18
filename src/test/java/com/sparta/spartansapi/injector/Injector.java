@@ -31,7 +31,10 @@ public class Injector {
         return null;
     }
 
-    private static IResponse getListOfDTO(JsonNode jsonNode) throws JsonProcessingException {
+    private static ListDTO getListOfDTO(JsonNode jsonNode) throws JsonProcessingException {
+        if (((ArrayNode) jsonNode.get("results")).isEmpty()) {
+            return objectMapper.treeToValue(jsonNode, ListDTO.class);
+        }
         if (((ArrayNode) jsonNode.get("results")).get(0).has("email")) {
             return objectMapper.treeToValue(jsonNode, ListOfSpartanDTO.class);
         } else if (((ArrayNode) jsonNode.get("results")).get(0).has("duration")) {

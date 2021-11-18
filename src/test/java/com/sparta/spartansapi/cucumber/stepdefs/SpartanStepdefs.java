@@ -39,7 +39,7 @@ public class SpartanStepdefs {
 
     @Then("I get back a Spartan that contain the id {string}")
     public void iGetBackASpartanThatContainTheId(String arg0) {
-        Assertions.assertEquals(arg0,((SpartanDTO) iResponse).getId());
+        Assertions.assertEquals(arg0,((ListOfSpartanDTO) iResponse).getSpartans().get(0).getId());
     }
 
     @When("I make a valid request by a non-existing name")

@@ -9,7 +9,7 @@ Feature: Filter Spartan by stream name
     Examples:
     | stream | stream1 |
     | Java%20Dev | Java Dev|
-    | C#%20Dev   | C# Dev  |
+    | Business%20Analytics  | Business Analytics  |
     | Java%20SDET | Java SDET|
 
   @Happy @Status
@@ -29,12 +29,12 @@ Feature: Filter Spartan by stream name
   @Sad @Error
   Scenario Outline: Querying a Spartan with an invalid stream name
     When I make a valid request by stream name "<stream>"
-    Then I get back an error message "Field format invalid"
+    Then I get back an error message "No records found"
 
     Examples:
       | stream |
       | 345678;  |
-      | asd dsa  |
+      | asd%20dsa  |
 
   @Sad @Status
   Scenario Outline: Querying a Response with an invalid stream name
@@ -43,5 +43,5 @@ Feature: Filter Spartan by stream name
 
     Examples:
       | stream | response |
-      | 345678;  | 400    |
-      | asd dsa  | 400    |
+      | 345678;  | 200    |
+      | asd%20dsa  | 200    |
