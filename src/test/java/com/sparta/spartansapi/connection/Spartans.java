@@ -32,6 +32,15 @@ public class Spartans {
                 + "&datebefore=" + before;
     }
 
+    public String getByEndDate(String endDate) {
+        return endPointURL + "?enddate=" + endDate;
+    }
+
+    public String getByEndDateInRange(String after, String before) {
+        return endPointURL + "/range?dateafter=" + after
+                + "&datebefore=" + before;
+    }
+
     public String getAddSpartanUrl() {
         return endPointURL;
     }
@@ -43,4 +52,5 @@ public class Spartans {
     public String getDeleteSpartanUrl(String id) {
         return endPointURL + "/" + id;
     }
+
 }

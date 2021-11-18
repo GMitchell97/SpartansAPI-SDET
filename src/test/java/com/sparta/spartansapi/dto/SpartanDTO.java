@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.sparta.spartansapi.util.DateParser;
 import org.mockito.cglib.core.Local;
 
 import java.io.IOException;
@@ -29,51 +30,23 @@ import java.util.Locale;
 public class SpartanDTO implements IResponse{
 
     @JsonProperty("id")
-    public String id;
+    private String id;
     @JsonProperty("firstName")
-    public String firstName;
+    private String firstName;
     @JsonProperty("middleName")
-    public String middleName;
+    private String middleName;
     @JsonProperty("lastName")
-    public String lastName;
+    private String lastName;
     @JsonProperty("startDate")
-    public String startDate;
+    private String startDate;
     @JsonProperty("endDate")
-    public String endDate;
+    private String endDate;
     @JsonProperty("course")
-    public CourseDTO course;
+    private CourseDTO course;
     @JsonProperty("stream")
-    public StreamDTO stream;
+    private StreamDTO stream;
     @JsonProperty("email")
-    public String email;
-
-
-    public SpartanDTO(String id, String firstName, String middleName, String lastName, String startDate, String endDate, CourseDTO course, StreamDTO stream, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.course = course;
-        this.stream = stream;
-        this.email = email;
-    }
-
-    public SpartanDTO(String id, String firstName, String lastName, String startDate, String endDate, CourseDTO course, StreamDTO stream, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.middleName = null;
-        this.lastName = lastName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.course = course;
-        this.stream = stream;
-        this.email = email;
-    }
-
-    public SpartanDTO() {
-    }
+    private String email;
 
     public String getId() {
         return id;
@@ -91,12 +64,12 @@ public class SpartanDTO implements IResponse{
         return lastName;
     }
 
-    public LocalDate getStartDate() {
-        return LocalDate.parse(startDate);
+    public String getStartDate() {
+        return startDate;
     }
 
-    public LocalDate getEndDate() {
-        return LocalDate.parse(endDate);
+    public String getEndDate() {
+        return endDate;
     }
 
     public CourseDTO getCourse() {
@@ -112,7 +85,11 @@ public class SpartanDTO implements IResponse{
     }
 
     public String getFullName() {
-        return firstName + " " + middleName + " " + lastName;
+        if (middleName != null) {
+            return firstName + " " + middleName + " " + lastName;
+        } else {
+            return firstName + " " + lastName;
+        }
     }
 
     public void setFirstName(String firstName) {
@@ -149,92 +126,124 @@ public class SpartanDTO implements IResponse{
 
     /**
      * Checks if the start date of the spartan matches a specified date
-     * @param date - the specified date (as a LocalDate)
+     * @param date - the specified date
      * @return whether or not the start date is equal to the date
      */
     public boolean isStartDateEqual(LocalDate date) {
-        return getStartDate().isEqual(date);
+        return DateParser.parse(startDate).isEqual(date);
     }
 
     /**
-     * Checks if the start date of the spartan matches a specified date
-     * @param date - the specified date (as a String)
-     * @return whether or not the start date is equal to the date
+     * Checks if the start date of the spartan is within a specified date range
+     * @param dateMin - the earliest date
+     * @param dateMax - the latest date
+     * @return whether or not the start date is within the date range
      */
-    public boolean isStartDateEqual(String date) {
-        return getStartDate().isEqual(LocalDate.parse(date));
+    public boolean isStartDateWithinRange(LocalDate dateMin, LocalDate dateMax) {
+        // TODO: Implement what happens when the second date is earlier than the first date
+        LocalDate ld = DateParser.parse(startDate);
+        return !(ld.isBefore(dateMin) || ld.isAfter(dateMax));
+    }
+
+    /**
+     * Checks if the start date is valid
+     * @return whether or not the start date is valid
+     */
+    public boolean isStartDateValid() {
+        LocalDate start = DateParser.parse(startDate);
+        if (start == null) { // if parse failed
+            return false;
+        }
+
+        if (!isDateEqualOrAfterFoundingYear(start)) { // if start date occurs before sparta was founded
+            return false;
+        }
+
+        // TODO: review whether startDate and endDate can be the same
+        LocalDate end = DateParser.parse(endDate);
+        if (end != null) {
+            if (start.isAfter(end)) { // if start date occurs after end date
+                return false;
+            }
+        }
+
+        // TODO: review creation of end date non-null/null value
+        //  (given we will always know startDate and course/course length, can we not calculate end date?
+        //  why should it ever be null?
+
+        // TODO: implement check for start date occuring x weeks before projected end date of contract
+
+        return true;
     }
 
     /**
      * Checks if the end date of the spartan matches a specified date
-     * @param date - the specified date (as a LocalDate)
+     * @param date - the specified date
      * @return whether or not the end date is equal to the date
      */
     public boolean isEndDateEqual(LocalDate date) {
-        return getEndDate().isEqual(date);
-    }
-
-    /**
-     * Checks if the end date of the spartan matches a specified date
-     * @param date - the specified date (as a String)
-     * @return whether or not the end date is equal to the date
-     */
-    public boolean isEndDateEqual(String date) {
-        return getEndDate().isEqual(LocalDate.parse(date));
-    }
-
-    /**
-     * Checks if the start date of the spartan is within a specified date range
-     * @param dateLower - the earliest date (as a LocalDate)
-     * @param dateUpper - the latest date (as a LocalDate)
-     * @return whether or not the start date is within the date range
-     */
-    public boolean isStartDateWithinRange(LocalDate dateLower, LocalDate dateUpper) {
-        // TODO: Implement what happens when the second date is earlier than the first date
-        return !(getStartDate().isBefore(dateLower) || getStartDate().isAfter(dateUpper));
-    }
-
-    /**
-     * Checks if the start date of the spartan is within a specified date range
-     * @param dateLower - the earliest date (as a String)
-     * @param dateUpper - the latest date (as a String)
-     * @return whether or not the start date is within the date range
-     */
-    public boolean isStartDateWithinRange(String dateLower, String dateUpper) {
-        // TODO: Implement what happens when the second date is earlier than the first date
-        return !(getStartDate().isBefore(LocalDate.parse(dateLower)) ||
-                getStartDate().isAfter(LocalDate.parse(dateUpper)));
+        return DateParser.parse(endDate).isEqual(date);
     }
 
     /**
      * Checks if the end date of the spartan is within a specified date range
-     * @param dateLower - the earliest date (as a LocalDate)
-     * @param dateUpper - the latest date (as a LocalDate)
+     * @param dateMin - the earliest date
+     * @param dateMax - the latest date
      * @return whether or not the end date is within the date range
      */
-    public boolean isEndDateWithinRange(LocalDate dateLower, LocalDate dateUpper) {
+    public boolean isEndDateWithinRange(LocalDate dateMin, LocalDate dateMax) {
         // TODO: Implement what happens when the second date is earlier than the first date
-        return !(getEndDate().isBefore(dateLower) || getEndDate().isAfter(dateUpper));
+        LocalDate ld = DateParser.parse(endDate);
+        return !(ld.isBefore(dateMin) || ld.isAfter(dateMax));
     }
 
     /**
-     * Checks if the end date of the spartan is within a specified date range
-     * @param dateLower - the earliest date (as a String)
-     * @param dateUpper - the latest date (as a String)
-     * @return whether or not the end date is within the date range
+     * Checks if the end date is valid
+     * @return whether or not the end date is valid
      */
-    public boolean isEndDateWithinRange(String dateLower, String dateUpper) {
-        // TODO: Implement what happens when the second date is earlier than the first date
-        return !(getEndDate().isBefore(LocalDate.parse(dateLower)) ||
-                getEndDate().isAfter(LocalDate.parse(dateUpper)));
+    public boolean isEndDateValid() {
+        if (endDate == null) { // immediately return true for null values
+            return true;
+        }
+
+        LocalDate end = DateParser.parse(endDate);
+        if (end == null) { // if parse failed
+            return false;
+        }
+
+        if (!isDateEqualOrAfterFoundingYear(end)) { // if end date occurs before sparta was founded
+            return false;
+        }
+
+        // TODO: review whether startDate and endDate can be the same
+        LocalDate start = DateParser.parse(startDate);
+        if (start != null) {
+            if (end.isBefore(start)) { // if end date occurs before start date
+                return false;
+            }
+        }
+
+        // TODO: review creation of end date non-null/null value
+        //  (given we will always know startDate and course/course length, can we not calculate end date?
+        //  why should it ever be null?
+
+        // TODO: implement check for (projected) end date occuring x weeks after start date of contract
+
+        return true;
     }
 
     /**
-     * Checks if the date is in a valid format (e.g. 2021-12-26)
-     * @param dateStr - the date (as a String)
+     * Checks if the date is in a valid format
+     *
+     * @deprecated
+     * Needs to be updated for new date string format (e.g. 2022-10-23T23:00:00.000+00:00)
+     * Move it into Util.DateParser maybe?
+     *
+     * @param dateStr - the date
      * @return whether or not the date is valid
      */
-    public boolean isValidDateStringFormat(String dateStr) {
+    @Deprecated
+    public boolean isDateStringValid(String dateStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
                 .withResolverStyle(ResolverStyle.STRICT);
         try {
@@ -246,36 +255,13 @@ public class SpartanDTO implements IResponse{
     }
 
     /**
-     * Checks if the start date is valid
-     * @return whether or not the start date is valid
-     */
-    public boolean isValidStartDate() {
-        // TODO: review whether startDate and endDate can be the same
-        return isDateEqualOrAfterFoundingYear(getStartDate()) &&
-                (getStartDate().isEqual(getEndDate()) || getStartDate().isBefore(getEndDate()));
-    }
-
-    /**
-     * Checks if the end date is valid
-     * @return whethernor not the end date is valid
-     */
-    public boolean isValidEndDate() {
-        if (endDate == null) {
-            return true;
-        }
-        // TODO: review whether startDate and endDate can be the same
-        return isDateEqualOrAfterFoundingYear(getEndDate()) &&
-                (getEndDate().isEqual(getStartDate()) || getEndDate().isAfter(getStartDate()));
-    }
-
-    /**
      * Checks if the date is equal to or after Sparta's founding year (2014)
      * @param date - the date to be checked
      * @return whether or not the date is equal to or after 2014
      */
-    private boolean isDateEqualOrAfterFoundingYear(LocalDate date) {
+    public boolean isDateEqualOrAfterFoundingYear(LocalDate date) {
         LocalDate founded = LocalDate.parse("2014-01-01");
-        return date.isEqual(founded) || date.isAfter(founded);
+        return !date.isBefore(founded); // alternatively: date.isEqual(founded) || date.isAfter(founded)
     }
 
     public static boolean isJSONValid(String jsonString ) {
@@ -286,5 +272,9 @@ public class SpartanDTO implements IResponse{
         } catch (IOException e) {
             return false;
         }
+    }
+
+    public boolean isEmailValidFormat(){
+        return getEmail().contains("@spartaglobal.com");
     }
 }
