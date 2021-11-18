@@ -6,44 +6,44 @@ Feature: Checking SpartanDTO for null fields
 
     Scenario: Checking id is not null
       When I check a spartans id
-      Then It is not null
+      Then id is not null
 
     Scenario: Checking first name is not null
       When I check a spartans firstName
-      Then It is not null
+      Then firstName is not null
 
     Scenario: Checking last name is not null
       When I check a spartans lastName
-      Then It is not null
+      Then lastName is not null
 
     Scenario: Checking start date is not null
       When I check a spartans startDate
-      Then It is not null
+      Then startDate is not null
 
     Scenario: Checking course object is not null
       When I check a spartans course
-      Then It is not null
+      Then course is not null
 
     Scenario: Checking course id is not null
       When I check a spartans course id
-      Then It is not null
+      Then course id is not null
 
     Scenario: Checking course name is not null
       When I check a spartans course name
-      Then It is not null
+      Then course name is not null
 
     Scenario: Checking stream object is not null
       When I check a spartans stream
-      Then It is not null
+      Then stream is not null
 
     Scenario: Checking stream duration is not null
       When I check a spartans stream duration
-      Then It is not null
+      Then stream duration is not null
 
     Scenario: Checking stream name is not null
       When I check a spartans stream name
-      Then It is not null
+      Then stream name is not null
 
     Scenario: Checking email is not null
       When I check a spartans email
-      Then It is not null
+      Then email is not null
