@@ -9,7 +9,7 @@ Feature: Filter Spartan by stream name
     Examples:
     | stream | stream1 |
     | Java%20Dev | Java Dev|
-    | C#%20Dev   | C# Dev  |
+    | Business%20Analytics  | Business Analytics  |
     | Java%20SDET | Java SDET|
 
   @Happy @Status
