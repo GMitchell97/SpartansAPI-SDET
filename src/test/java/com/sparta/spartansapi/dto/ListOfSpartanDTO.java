@@ -71,6 +71,35 @@ public class ListOfSpartanDTO implements IResponse {
         return true;
     }
 
+    public boolean doesSpartanExist(String name){
+        for(SpartanDTO spartanDTO: spartans){
+            if(!spartanDTO.getFirstName().equals(name)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String spartanNameConverter (String name) {
+        String nname = "";
+        for (SpartanDTO spartanDTO : spartans) {
+            if (spartanDTO.getMiddleName().isEmpty()) {
+                nname = spartanDTO.getFirstName()+"%20"+spartanDTO.getLastName();
+            } else {
+                nname = spartanDTO.getFirstName()+"%20"+spartanDTO.getMiddleName()+"%20"+spartanDTO.getLastName();
+            }
+        }
+        return nname;
+    }
+
+    public boolean isSpartanNameInResponse(String name) {
+        for (SpartanDTO spartanDTO : spartans) {
+            String nname = spartanNameConverter(name);
+            if (!name.equals(nname)) return false;
+        }
+        return true;
+    }
+
     /**
      * Gets all spartans who start their contract on a specific date
      * @param date - the specified date
