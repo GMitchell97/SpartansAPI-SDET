@@ -30,8 +30,15 @@ public class CrudStepdefs {
                         "        \"lastName\": \"LName\",\n" +
                         "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
                         "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 95\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
+                        "            \"course\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Engineering 95\"\n" +
+                        "            },\n" +
+                        "            \"stream\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Java Dev\",\n" +
+                        "                \"duration\": 11\n" +
+                        "            }," +
                         "        \"email\": \"Name@spartaglobal.com\"\n" +
                         "    }");
         iResponse = Injector.injectDTO(callManager);
@@ -47,8 +54,15 @@ public class CrudStepdefs {
                         "        \"lastName\": \"LName\",\n" +
                         "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
                         "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 95\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
+                        "            \"course\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Engineering 95\"\n" +
+                        "            },\n" +
+                        "            \"stream\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Java Dev\",\n" +
+                        "                \"duration\": 11\n" +
+                        "            }," +
                         "        \"email\": \"Name@spartaglobal.com\"\n" +
                         "    }");
         iResponse = Injector.injectDTO(callManager);
@@ -82,8 +96,15 @@ public class CrudStepdefs {
                         "        \"lastName\": \"LName\",\n" +
                         "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
                         "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 96\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
+                        "            \"course\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Engineering 96\"\n" +
+                        "            },\n" +
+                        "            \"stream\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Java Dev\",\n" +
+                        "                \"duration\": 11\n" +
+                        "            }," +
                         "        \"email\": \"Name@spartaglobal.com\"\n" +
                         "    }");
         iResponse = Injector.injectDTO(callManager);
@@ -104,8 +125,15 @@ public class CrudStepdefs {
                         "        \"lastName\": \"LName\",\n" +
                         "        \"startDate\": \"2021-09-04T23:00:00.000+00:00\",\n" +
                         "        \"endDate\": \"2021-11-14T00:00:00.000+00:00\",\n" +
-                        "        \"course\": \"Engineering 96\",\n" +
-                        "        \"stream\": \"Java SDET\",\n" +
+                        "            \"course\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Engineering 96\"\n" +
+                        "            },\n" +
+                        "            \"stream\": {\n" +
+                        "                \"id\": null,\n" +
+                        "                \"name\": \"Java Dev\",\n" +
+                        "                \"duration\": 11\n" +
+                        "            }," +
                         "        \"email\": \"Name@spartaglobal.com\"\n" +
                         "    }");
         iResponse = Injector.injectDTO(callManager);
