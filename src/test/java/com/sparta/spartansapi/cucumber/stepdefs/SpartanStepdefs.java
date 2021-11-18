@@ -2,6 +2,7 @@ package com.sparta.spartansapi.cucumber.stepdefs;
 
 import com.sparta.spartansapi.connection.CallManager;
 import com.sparta.spartansapi.connection.ConnectionManager;
+import com.sparta.spartansapi.dto.IResponse;
 import com.sparta.spartansapi.dto.ListOfSpartanDTO;
 import com.sparta.spartansapi.dto.SpartanDTO;
 import com.sparta.spartansapi.injector.Injector;
@@ -170,9 +171,100 @@ public class SpartanStepdefs {
         callManager = new CallManager(ConnectionManager.getSpartans().getByEndDate("invalid-start-date"));
         iResponse = Injector.injectDTO(callManager);
     }
-
+  
     @Then("The email should have the correct name end with @spartaglobal.com")
     public void theEmailShouldHaveTheCorrectNameEndWithSpartaglobalCom() {
         Assertions.assertTrue(((ListOfSpartanDTO)iResponse).getSpartans().get(0).isEmailValidFormat());
     }
+
+    @When("I check a spartans id")
+    public void iCheckASpartansId() {
+    }
+
+    @Then("id is not null")
+    public void idIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isIdNull());
+    }
+
+    @When("I check a spartans firstName")
+    public void iCheckASpartansFirstName() {
+    }
+
+    @Then("firstName is not null")
+    public void firstnameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isFirstNameNull());
+    }
+
+    @When("I check a spartans lastName")
+    public void iCheckASpartansLastName() {
+    }
+
+    @Then("lastName is not null")
+    public void lastnameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isLastNameNull());
+    }
+
+    @When("I check a spartans startDate")
+    public void iCheckASpartansStartDate() {
+    }
+
+    @Then("startDate is not null")
+    public void startdateIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStartDateNull());
+    }
+
+    @When("I check a spartans course")
+    public void iCheckASpartansCourse() {
+    }
+
+    @Then("course is not null")
+    public void courseIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isCourseNull());
+    }
+
+    @When("I check a spartans course name")
+    public void iCheckASpartansCourseName() {
+    }
+
+    @Then("course name is not null")
+    public void courseNameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isCourseNameNull());
+    }
+
+    @When("I check a spartans stream")
+    public void iCheckASpartansStream() {
+    }
+
+    @Then("stream is not null")
+    public void streamIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStreamNull());
+    }
+
+    @When("I check a spartans stream duration")
+    public void iCheckASpartansStreamDuration() {
+    }
+
+    @Then("stream duration is not null")
+    public void streamDurationIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStreamDurationNull());
+    }
+
+    @When("I check a spartans stream name")
+    public void iCheckASpartansStreamName() {
+    }
+
+    @Then("stream name is not null")
+    public void streamNameIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isStreamNameNull());
+    }
+
+    @When("I check a spartans email")
+    public void iCheckASpartansEmail() {
+    }
+
+    @Then("email is not null")
+    public void emailIsNotNull() {
+        Assertions.assertFalse(((ListOfSpartanDTO) iResponse).isEmailNull());
+    }
+
 }
