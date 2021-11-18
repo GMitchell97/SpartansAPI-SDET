@@ -74,7 +74,7 @@ public class SpartanStepdefs {
 
     @Then("I get back a Json array of Spartans that contain the first name {string}")
     public void iGetBackAJsonArrayOfSpartansThatContainTheFirstName(String arg0){
-        Assertions.assertEquals(arg0, ((SpartanDTO)iResponse).getFirstName());
+        Assertions.assertTrue(((ListOfSpartanDTO) iResponse).isSpartanFirstNameInResponse(arg0));
     }
 
 

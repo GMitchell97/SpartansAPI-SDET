@@ -19,6 +19,11 @@ public class UtilStepdefs {
         Assertions.assertEquals(message, ((ErrorDTO) iResponse).getMessage());
     }
 
+    @Then("I get back a message {string}")
+    public void iGetBackAMessage(String message) {
+        Assertions.assertEquals(message, ((ListDTO) iResponse).getMessage());
+    }
+
     @Given("I use a valid API key")
     public void iUseAValidAPIKey() {
     }

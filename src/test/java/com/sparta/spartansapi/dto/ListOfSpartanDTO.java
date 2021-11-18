@@ -61,23 +61,22 @@ public class ListOfSpartanDTO extends ListDTO implements IResponse {
         }
         return true;
     }
-
-    public String spartanNameConverter (String name) {
-        String nname = "";
+    public boolean isSpartanFirstNameInResponse(String name) {
         for (SpartanDTO spartanDTO : results) {
-            if (spartanDTO.getMiddleName().isEmpty()) {
-                nname = spartanDTO.getFirstName()+"%20"+spartanDTO.getLastName();
-            } else {
-                nname = spartanDTO.getFirstName()+"%20"+spartanDTO.getMiddleName()+"%20"+spartanDTO.getLastName();
+            String[] names = name.split(" ");
+            if(!names[0].equals(spartanDTO.getFirstName())){
+                return false;
             }
         }
-        return nname;
+        return true;
     }
 
     public boolean isSpartanNameInResponse(String name) {
         for (SpartanDTO spartanDTO : results) {
-            String nname = spartanNameConverter(name);
-            if (!name.equals(nname)) return false;
+            String[] names = name.split(" ");
+            if(!names[0].equals(spartanDTO.getFirstName())&&!names[name.length()-1].equals(spartanDTO.getLastName())){
+                return false;
+            }
         }
         return true;
     }

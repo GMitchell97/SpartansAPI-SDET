@@ -25,10 +25,10 @@ public class Injector {
             return getListOfDTO(jsonObject);
         } else if (jsonObject.has("id")){
             return getSpartan(jsonObject);
-        } else if (jsonObject.has("error")) {
-            return getError(jsonObject);
         }
-        return null;
+        return getError(jsonObject);
+
+
     }
 
     private static ListDTO getListOfDTO(JsonNode jsonNode) throws JsonProcessingException {

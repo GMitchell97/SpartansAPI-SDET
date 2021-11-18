@@ -19,4 +19,4 @@ Feature: Filtering By Id
   @Sad @Error
   Scenario: If there isnt an id I get back an appropriate message
   When I make a valid request by id "61950614617e722ae9bfb034"
-  Then I get back an error message "No record found"
+  Then I get back a message "No record found"
