@@ -22,13 +22,24 @@ public class AllStepdefs {
         iResponse = Injector.injectDTO(callManager);
     }
 
-    @Then("receive a list of all spartans in a json format")
-    public void receiveAListOfAllSpartansInAJsonFormat() {
-        Assertions.assertTrue(SpartanDTO.isJSONValid(callManager.getJson()));
-    }
-
     @When("I make a GET request to all")
     public void iMakeAGETRequestToAll() throws IOException, InterruptedException {
         callManager = new CallManager(ConnectionManager.getSpartans().getAll());
+    }
+
+    @When("I make a GET request to all courses")
+    public void iMakeAGETRequestToAllCourses() throws IOException, InterruptedException{
+        callManager = new CallManager(ConnectionManager.getCourses().getAll());
+
+    }
+
+    @When("I make a GET request to all streams")
+    public void iMakeAGETRequestToAllStreams() throws IOException, InterruptedException {
+        callManager = new CallManager((ConnectionManager.getStreams().getAll()));
+    }
+
+    @Then("receive a list of all {string} in a json format")
+    public void receiveAListOfAllInAJsonFormat(String endPoints) {
+        Assertions.assertTrue(SpartanDTO.isJSONValid(callManager.getJson()));
     }
 }

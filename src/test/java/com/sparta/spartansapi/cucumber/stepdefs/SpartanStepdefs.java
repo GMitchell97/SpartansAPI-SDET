@@ -135,7 +135,7 @@ public class SpartanStepdefs {
 
     @When("I search for Spartans who start their contract on an invalid full date")
     public void iSearchForSpartansWhoStartTheirContractOnAnInvalidFullDate() throws IOException, InterruptedException {
-        // TODO: implemented other paramaters for invalid start date (format, before sparta founding, after the end date, etc.)
+        // TODO: implement other parameters for invalid start date (format, before sparta founding, after the end date, etc.)
         callManager = new CallManager(ConnectionManager.getSpartans().getByStartDate("invalid-start-date"));
         iResponse = Injector.injectDTO(callManager);
     }
@@ -170,7 +170,7 @@ public class SpartanStepdefs {
 
     @When("I search for Spartans who end their contract on an invalid full date")
     public void iSearchForSpartansWhoEndTheirContractOnAnInvalidFullDate() throws IOException, InterruptedException {
-        // TODO: implement other paramaters for invalid end date (format, before sparta founding, before the start date, etc.)
+        // TODO: implement other parameters for invalid end date (format, before sparta founding, before the start date, etc.)
         callManager = new CallManager(ConnectionManager.getSpartans().getByEndDate("invalid-start-date"));
         iResponse = Injector.injectDTO(callManager);
     }
